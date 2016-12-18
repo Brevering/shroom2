@@ -38,7 +38,7 @@ export let fakeBackendProvider = {
                         })));
                     } else {
                         // else return 400 bad request
-                        connection.mockError(new Error('Username or password is incorrect'));
+                        //connection.mockError(new Error('Username or password is incorrect'));
                     }
                 }
 
@@ -79,7 +79,7 @@ export let fakeBackendProvider = {
                     // validation
                     let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
                     if (duplicateUser) {
-                        return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
+                        //return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
                     }
 
                     // save new user
