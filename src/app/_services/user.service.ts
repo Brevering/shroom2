@@ -9,7 +9,7 @@ export class UserService {
     constructor(private http: Http) { }
 
     getAll() {
-        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+        return this.http.get('http://localhost:3000/api/users').map((response: Response) => response.json());
     }
 
     getById(id: number) {
@@ -17,7 +17,7 @@ export class UserService {
     }
 
     create(user: User) {
-        return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('/api/users/', user, this.jwt()).map((response: Response) => response.json());
     }
 
     update(user: User) {
