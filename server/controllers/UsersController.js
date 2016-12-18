@@ -36,7 +36,7 @@ function postAuthenticate(req, res) {
                 // if user is found and password is right create a token
                 let token = jwt.encode(user, config.secret);
                 // return the information including token as JSON
-                return res.json({ success: true, token: 'JWT ' + token });
+                return res.json({ success: true, user: user, token: 'JWT ' + token });
             } else {
                 res.status(401).send({ err: 'Authentication failed. Wrong password.' });
             }
@@ -52,7 +52,6 @@ function getAll(req, res) {
         if (!users.length) {
             res.status(401).send({ err: 'No users.' });
         } else {
-                console.log(users);
                 res.status(200).json(users);
             }
     });
