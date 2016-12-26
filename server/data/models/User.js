@@ -4,7 +4,12 @@ const mongoose = require('mongoose'),
 
 module.exports.init = function() {
     let userSchema = mongoose.Schema({
-        username: { type: String, required: requiredMessage, unique: true },
+        username: { 
+            type: String, 
+            required: 
+            requiredMessage, 
+            unique: true 
+        },
         salt: String,
         hashPass: String
     });
