@@ -11,4 +11,7 @@ export class NewsService {
     getAll() {
         return this.http.get('http://localhost:3000/api/News').map((response: Response) => response.json());
     }
+    createNews(news: News) {
+        return this.http.post('http://localhost:3000/api/News', news).map((response: Response) => response.json());
+    }
 }

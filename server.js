@@ -6,6 +6,7 @@ const express = require('express'),
  passport = require('passport'),
  config = require('./server/config/database'), // get db config file
  User = require('./server/data/models/User'), // get the mongoose model
+ News = require('./server/data/models/News'),
  port = process.env.PORT || 3000,
  jwt = require('jwt-simple');
 
@@ -36,8 +37,7 @@ mongoose.connect(config.database);
 let UserModel = require('./server/data/models/User');
 UserModel.init();
 
-let NewsModel = require('./server/data/models/News');
-NewsModel.init();
+// let NewsModel = require('./server/data/models/News');
  
 // pass passport for configuration
 require('./server/config/passport')(passport);
@@ -54,6 +54,7 @@ apiRoutes.post('/authenticate', usersController.postAuthenticate);
 apiRoutes.get('/users', usersController.getAll);
 
 apiRoutes.get('/News', newsController.GetAllNews);
+apiRoutes.post('/News', newsController.createArticle);
  
 // connect the api routes under /api/*
 app.use('/api', apiRoutes);

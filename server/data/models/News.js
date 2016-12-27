@@ -5,36 +5,19 @@ let mongoose = require("mongoose");
 let newsSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true,
-        trim: true,
-        minlength: 5,
-        mexlength: 60
+        required: true
     },
     body: {
         type: String,
-        required: true,
-        trim: true,
-        minlength: 5,
-        mexlength: 5000
+        required: true
     },
     category: {
-        _id: mongoose.Schema.Types.ObjectId,
-        name: {
-            type: String,
-            required: true,
-            minlength: 2,
-            maxlength: 20
-        }
+        type: String,
+        required: true
     },
     author: {
-        _id: mongoose.Schema.Types.ObjectId,
-        username: {
-            type: String,
-            required: true,
-            trim: true,
-            minlength: 2,
-            maxlength: 30
-        }
+        type: String,
+        required: true
     },
     imgLink: {
         type: String,

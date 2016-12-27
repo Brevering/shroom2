@@ -1,7 +1,11 @@
 export class News {
     id: number;
-    title: string;
     body: string;
+    title: string;
+    category: {
+        id: string;
+        name: string;
+    };
     author: {
         id: string;
         username: string;
