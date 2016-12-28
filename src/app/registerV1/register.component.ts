@@ -2,13 +2,11 @@
 import { Router } from '@angular/router';
 
 import { AlertService, UserService } from '../_services/index';
-
 import { User } from '../_models/index';
 
 @Component({
     templateUrl: './register.component.html'
 })
-
 export class RegisterComponent {
     model = new User();
     loading = false;

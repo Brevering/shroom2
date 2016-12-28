@@ -11,11 +11,13 @@ import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService, NewsService } from './_services/index';
 // import { HomeComponent } from './home/index';
-import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
+// import { LoginComponent } from './login/index';
+// import { RegisterComponent } from './register/index';
 import { SearchbarComponent } from './common/searchbar/searchbar.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { CategoriesListComponent } from './common/categories-list/categories-list.component';
+import { LoginComponent } from './common/login/login.component';
+import { RegisterComponent } from './common/register/register.component';
 
 @NgModule({
     imports: [
@@ -28,11 +30,13 @@ import { CategoriesListComponent } from './common/categories-list/categories-lis
         AppComponent,
         AlertComponent,
         // HomeComponent,
-        LoginComponent,
-        RegisterComponent,
+        // LoginComponent,
+        // RegisterComponent,
         SearchbarComponent,
         NavbarComponent,
-        CategoriesListComponent
+        CategoriesListComponent,
+        LoginComponent,
+        RegisterComponent
     ],
     providers: [
         AuthGuard,
