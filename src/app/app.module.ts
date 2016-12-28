@@ -18,6 +18,8 @@ import { NavbarComponent } from './common/navbar/navbar.component';
 import { CategoriesListComponent } from './common/categories-list/categories-list.component';
 import { LoginComponent } from './common/login/login.component';
 import { RegisterComponent } from './common/register/register.component';
+import { HomeComponent } from './home/home.component';
+import { SafeUrlPipe } from './home/safe-url.pipe';
 
 @NgModule({
     imports: [
@@ -36,7 +38,9 @@ import { RegisterComponent } from './common/register/register.component';
         NavbarComponent,
         CategoriesListComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        HomeComponent,
+        SafeUrlPipe
     ],
     providers: [
         AuthGuard,
