@@ -20,6 +20,7 @@ import { LoginComponent } from './common/login/login.component';
 import { RegisterComponent } from './common/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { SafeUrlPipe } from './home/safe-url.pipe';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { SafeUrlPipe } from './home/safe-url.pipe';
         LoginComponent,
         RegisterComponent,
         HomeComponent,
-        SafeUrlPipe
+        SafeUrlPipe,
+        UserProfileComponent
     ],
     providers: [
         AuthGuard,

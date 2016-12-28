@@ -5,6 +5,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from './common/login/index';
 import { RegisterComponent } from './common/register/index';
 import { HomeComponent } from './home/index';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -12,8 +13,9 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
 
     { path: 'home', component: HomeComponent },
-    // // otherwise redirect to home
-    // { path: '**', redirectTo: '' }
+    { path: 'profile', component: UserProfileComponent }, // add canActivate: [AuthGuard]
+
+    // { path: '**', component: PageNotFoundComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

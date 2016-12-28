@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-3">
+    <div class="list-group">
+      <a class="list-group-item" (click)="navigate( 'create' )">Post something</a>
+      <a class="list-group-item" (click)="navigate( 'my-posts' )">Show my posts<span class="badge">14</span></a>
+      <a class="list-group-item" (click)="navigate( 'my-likes' )">Show my likes<span class="badge">256</span></a>
+      <!--<a class="list-group-item" (click)="navigate( 'edit' )" disabled="disabled">Edit my profile</a>-->
+    </div>
+  </div>
+</div>
