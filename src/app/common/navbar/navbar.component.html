@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs nav-justified">
+      <li role="presentation"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li role="presentation" (click)="toggle(categoriesLink)" [class.active]="isActive"><a #categoriesLink>Show categories</a></li>
+      <li role="presentation"><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+    </ul>
+  </div>
+</div>

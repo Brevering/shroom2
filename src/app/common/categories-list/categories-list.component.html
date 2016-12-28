@@ -1,0 +1,13 @@
+<div class="row" [class.hidden]="isHidden">
+  <div class="col-md-8 col-md-offset-2">
+    <ul id="category-box" class="text-center">
+      <li>
+        <ul id="category-list">
+          <li *ngFor="let categoryName of randomTenCategories"><a routerLink="/category/{{categoryName}}">{{categoryName}}</a></li>
+        </ul>
+      </li>
+      <hr/>
+      <li><a href="/categories">Show all categories</a></li>
+    </ul>
+  </div>
+</div>
