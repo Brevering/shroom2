@@ -10,6 +10,8 @@ module.exports.init = function() {
             requiredMessage, 
             unique: true 
         },
+        firstName: String,
+        lastName: String,
         salt: String,
         hashPass: String
     });

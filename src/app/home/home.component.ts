@@ -1,8 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
+
 import { User, News } from '../_models/index';
-import { UserService, NewsService } from '../_services/index';
+import { UserService, NewsService, AlertService } from '../_services/index';
 
 
 @Component({
@@ -10,13 +12,19 @@ import { UserService, NewsService } from '../_services/index';
 })
 
 export class HomeComponent implements OnInit {
+
+    loading = false;
     currentUser: User;
     users: User[] = [];
     news: News[] = [];
 
     newsModel: any = {};
 
-    constructor(private userService: UserService, private newsService: NewsService) {
+    constructor(
+        private router: Router,
+        private alertService: AlertService,
+        private userService: UserService,
+        private newsService: NewsService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
@@ -48,10 +56,12 @@ export class HomeComponent implements OnInit {
         this.newsService.createNews(this.newsModel)
             .subscribe(
             data => {
-                   console.log("success!");
+                this.alertService.success('Article Created!');
+                this.router.navigate(['/']);
             },
             error => {
-                console.log(error);
+                this.alertService.error(error);
+                this.loading = false;
             });
     }
 }
