@@ -34,6 +34,7 @@ app.get('/', function(req, res) {
 
 // connect to database
 mongoose.connect(config.database);
+
 let UserModel = require('./server/data/models/User');
 UserModel.init();
 

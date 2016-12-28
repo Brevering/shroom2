@@ -1,14 +1,12 @@
 export class News {
-    id: number;
-    body: string;
+    id: string;
     title: string;
-    category: {
-        id: string;
-        name: string;
-    };
-    author: {
-        id: string;
-        username: string;
-    };
-
+    body: string;
+    type: string;
+    youtubeLink: string;
+    imgLink: string;
+    category: string;
+    author: string;
+    createdAt: Date;
+    isDeleted: boolean;
 }

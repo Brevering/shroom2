@@ -12,7 +12,6 @@ import { UserService, NewsService, AlertService } from '../_services/index';
 })
 
 export class HomeComponent implements OnInit {
-
     loading = false;
     currentUser: User;
     users: User[] = [];

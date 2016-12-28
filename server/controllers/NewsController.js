@@ -16,7 +16,9 @@ function GetAllNews(req, res) {
 }
 function createArticle(req, res) {
     let newsData = req.body;
+    
     console.log(req.body);
+
     news.create(newsData, function (err, news) {
         if (err) {
             return res.status(409).json({ success: false, msg: { code: err.code, message: err.message } });

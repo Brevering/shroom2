@@ -1,6 +1,9 @@
-"use strict";
-
 let mongoose = require("mongoose");
+
+const typeOfArticles = ["Text", "Audio", "Video", "Image"];
+
+const youtubeLinksRegex = new RegExp("(?:https?://)?(?:www\.)?youtu(?:be\.com/watch\?(?:.*?&(?:amp;)?)?v=|\.be/)([\w\-]+)(?:&(?:amp;)?[\w\?=]*)?");
+const imageLinkRegex = new RegExp("[a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif)");
 
 let newsSchema = mongoose.Schema({
     title: {
@@ -9,7 +12,23 @@ let newsSchema = mongoose.Schema({
     },
     body: {
         type: String,
-        required: true
+        required: false
+    },
+    type: {
+        type: String,
+        required: true,
+        enum: typeOfArticles,
+        default: "Text"
+    },
+    youtubeLink: {
+        type: String,
+        required: false,
+        match: youtubeLinksRegex
+    },
+    imgLink: {
+        type: String,
+        required: false,
+        match: imageLinkRegex
     },
     category: {
         type: String,
@@ -19,25 +38,15 @@ let newsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    imgLink: {
-        type: String,
-        trim: true,
-        set: value => {
-            if (value.length === 0) {
-                return "/static/images/bojokogybi1.png";
-            }
-            return value;
-        }
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
-    meta: {
-        likes: Number,
-        dislikes: Number,
-        tags: [{
-            _id: mongoose.Schema.Types.ObjectId,
-            name: String
-        }]
-    },
-    comments: [{}]
+    isDeleted: {
+        type: Boolean,
+        required: false,
+        default: false
+    }
 });
 newsSchema.set("collection", "News");
 newsSchema.set("timestamps", true);
