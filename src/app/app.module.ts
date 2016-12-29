@@ -15,6 +15,7 @@ import { NavbarComponent } from './common/navbar/navbar.component';
 import { CategoriesListComponent } from './common/categories-list/categories-list.component';
 import { LoginComponent } from './common/login/login.component';
 import { RegisterComponent } from './common/register/register.component';
+import { NotFoundComponent } from './common/not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SafeUrlPipe } from './home/safe-url.pipe';
 // import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -42,8 +43,9 @@ import { AppRoutingModule } from './app-routing.module';
         CategoriesListComponent,
         LoginComponent,
         RegisterComponent,
+        NotFoundComponent,
         HomeComponent,
-        SafeUrlPipe,
+        SafeUrlPipe
         // UserProfileComponent,
         // CreatePostComponent,
         // UserPostsListComponent
