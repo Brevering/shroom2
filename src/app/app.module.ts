@@ -10,6 +10,7 @@ import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService, NewsService } from './_services/index';
 
+import { AboutComponent } from './common/about/about.component';
 import { SearchbarComponent } from './common/searchbar/searchbar.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { CategoriesListComponent } from './common/categories-list/categories-list.component';
@@ -48,7 +49,8 @@ import { PostDetailsComponent } from './posts/post-details.component';
         NotFoundComponent,
         HomeComponent,
         SafeUrlPipe,
-        PostDetailsComponent
+        PostDetailsComponent,
+        AboutComponent
         // UserProfileComponent,
         // CreatePostComponent,
         // UserPostsListComponent
