@@ -20,9 +20,10 @@ import { SafeUrlPipe } from './home/safe-url.pipe';
 // import { UserProfileComponent } from './user-profile/user-profile.component';
 // import { CreatePostComponent } from './posts/create-post.component';
 // import { UserPostsListComponent } from './user-profile/user-posts-list.component';
+// import { UserProfileRoutingModule } from './user-profile/user-profile-routing.module';
 
 import { AppRoutingModule } from './app-routing.module';
-// import { UserProfileRoutingModule } from './user-profile/user-profile-routing.module';
+
 
 @NgModule({
     imports: [

@@ -7,6 +7,7 @@ import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { UserProfileComponent } from './index';
 import { UserPostsListComponent } from './index';
 import { CreatePostComponent } from '../posts/index';
+import { UserLikesListComponent } from './user-likes-list.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,11 @@ import { CreatePostComponent } from '../posts/index';
     FormsModule,
     UserProfileRoutingModule
   ],
-  declarations: [UserProfileComponent, UserPostsListComponent, CreatePostComponent]
+  declarations: [
+    UserProfileComponent,
+    UserPostsListComponent,
+    CreatePostComponent,
+    UserLikesListComponent,
+    UserLikesListComponent]
 })
 export class UserProfileModule { }

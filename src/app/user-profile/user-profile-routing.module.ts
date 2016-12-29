@@ -4,14 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserProfileComponent } from './index';
 import { UserPostsListComponent } from './index';
 import { CreatePostComponent } from '../posts/index';
+import { UserLikesListComponent } from './user-likes-list.component';
 
 const userProfileRoutes: Routes = [
   {
-    path: 'profile', component: UserProfileComponent, ////// make it profile/:user, add canActivate: [AuthGuard]
+    path: 'profile', component: UserProfileComponent, // make it profile/:user, add canActivate: [AuthGuard]
     children: [
       { path: '', component: CreatePostComponent },
       { path: 'my-posts', component: UserPostsListComponent },
-      // { path: 'my-likes', component: CrisisListComponent }
+      { path: 'my-likes', component: UserLikesListComponent }
     ]
   }
 ];
