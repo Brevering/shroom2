@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { User } from '../../_models/index';
+import { AuthenticationService } from '../../_services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,12 +15,16 @@ export class NavbarComponent implements OnInit {
 
   private isActive: boolean = false;
 
-  constructor() {
+  constructor(private authService: AuthenticationService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
   }
+
+  logout() {
+        this.authService.logout();
+    }
 
   toggle(categoriesLink: HTMLAnchorElement) {
     this.isActive = !this.isActive;

@@ -13,7 +13,7 @@
       <li role="presentation" *ngIf="currentUser">
         <a routerLink="/profile" routerLinkActive="active"> {{currentUser.user.username}} </a>
       </li>
-      <li role="presentation" *ngIf="currentUser">
+      <li role="presentation" (click)="logout()" *ngIf="currentUser">
         <a routerLink="/login" routerLinkActive="active"> Logout </a>
       </li>
 
