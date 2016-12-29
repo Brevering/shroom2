@@ -31,8 +31,9 @@ import { AppRoutingModule } from './app-routing.module';
         BrowserModule,
         FormsModule,
         HttpModule,
+        UserProfileModule,
         AppRoutingModule,
-        UserProfileModule
+       
     ],
     declarations: [
         AppComponent,
