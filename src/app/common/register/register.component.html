@@ -23,7 +23,7 @@
         <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
       </div>
 
-      <p>You already have an account?? Go back to <a (click)="goBack()">login</a></p>
+      <p>You already have an account?? Go back to <a routerLink="/login">login</a></p>
       <button type="submit" [disabled]="loading" class="btn btn-success">Register</button>
       <img class="loading" *ngIf="loading" src="http://orig06.deviantart.net/df77/f/2013/094/8/d/loading_logofinal_by_zegerdon-d60eb1v.gif" />
     </form>
