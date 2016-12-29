@@ -1,16 +1,13 @@
 <!--Possible poblems on how to create new row with for loop-->
 <div class="row">
   <div class="col-md-3" *ngFor="let post of posts">
-    <div class="thumbnail">
+    <div class="thumbnail" (click)="onSelect(post)">
       <!--<p class="text" *ngIf="post.title">{{post.title}}</p>    -->
       <p class="text" *ngIf="post.body">{{post.body}}</p>
       <img *ngIf="post.imgLink" [src]="post.imgLink">
       <iframe *ngIf="post.videoLink" [src]="post.videoLink | safeUrl" frameborder="0" allowfullscreen></iframe>
       <iframe *ngIf="post.soundLink" [src]="post.soundLink | safeUrl" frameborder="0" scrolling="no" webkitallowfullscreen mozallowfullscreen
         allowfullscreen></iframe>
-      <div class="caption">
-        <p><a href="#">{{post.category}}</a> <a href="#" role="button"><span class="glyphicon glyphicon-heart text-danger pull-right" aria-hidden="true"></span></a></p>
-      </div>
     </div>
   </div>
 </div>

@@ -24,6 +24,7 @@ import { SafeUrlPipe } from './home/safe-url.pipe';
 // import { UserProfileRoutingModule } from './user-profile/user-profile-routing.module';
 
 import { AppRoutingModule } from './app-routing.module';
+import { PostDetailsComponent } from './posts/post-details.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AppRoutingModule } from './app-routing.module';
         RegisterComponent,
         NotFoundComponent,
         HomeComponent,
-        SafeUrlPipe
+        SafeUrlPipe,
+        PostDetailsComponent
         // UserProfileComponent,
         // CreatePostComponent,
         // UserPostsListComponent

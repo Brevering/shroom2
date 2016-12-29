@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
+// import post model
 import { POSTS } from './posts-mocked';
 
 @Component({
@@ -8,10 +10,17 @@ import { POSTS } from './posts-mocked';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  posts = POSTS;
-  constructor() { }
+  posts;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.posts = POSTS;
   }
+
+  onSelect(post) {
+    this.router.navigate(['/post', post.id]);
+  }
+
 
 }

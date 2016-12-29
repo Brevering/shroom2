@@ -9,10 +9,12 @@ import { NotFoundComponent } from './common/not-found/index';
 import { HomeComponent } from './home/index';
 import { UserProfileComponent, UserPostsListComponent } from './user-profile/index';
 import { CreatePostComponent } from './posts/index';
+import { PostDetailsComponent } from './posts/index';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'post/:id', component: PostDetailsComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'home', component: HomeComponent },
