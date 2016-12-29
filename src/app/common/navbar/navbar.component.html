@@ -1,9 +1,25 @@
 <div class="row">
   <div class="col-md-12">
-    <ul class="nav nav-tabs nav-justified">
-      <li role="presentation"><a routerLink="/home" routerLinkActive="active">Home</a></li>
-      <li role="presentation" (click)="toggle(categoriesLink)" [class.active]="isActive"><a #categoriesLink>Show categories</a></li>
-      <li role="presentation"><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+
+    <ul class="nav nav-tabs nav-justified" >
+      <li role="presentation">
+        <a routerLink="/home" routerLinkActive="active"> Home </a>
+      </li>
+
+      <li role="presentation" (click)="toggle(categoriesLink)" [class.active]="isActive">
+        <a #categoriesLink> Show categories </a>
+      </li>
+
+      <li role="presentation" *ngIf="currentUser">
+        <a routerLink="/profile" routerLinkActive="active"> {{currentUser.user.username}} </a>
+      </li>
+      <li role="presentation" *ngIf="currentUser">
+        <a routerLink="/login" routerLinkActive="active"> Logout </a>
+      </li>
+
+      <li role="presentation" *ngIf="!currentUser">
+        <a routerLink="/login" routerLinkActive="active"> Login/Register </a>
+      </li>
     </ul>
   </div>
 </div>
