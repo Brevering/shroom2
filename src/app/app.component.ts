@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { User } from './_models/index';
 import { AuthenticationService } from './_services/index';
 
@@ -11,12 +11,9 @@ export class AppComponent implements OnInit {
 
     @Input() isToggledOn: boolean = true;
 
-    currentUser: User;
+    @Output() currentUser: User;
 
-    constructor(private authenticationService: AuthenticationService) {
-        // set current user from local storage
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
+    constructor(private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
         // subscribe to authentication status updates to set and remove the current user on login and logout
