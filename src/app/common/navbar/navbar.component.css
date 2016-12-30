@@ -1,0 +1,16 @@
+div.list>ul li {
+    background-color: #EEEEEE;
+    border: 1px solid lightgrey;
+    border-radius: 5%;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+div.list>ul li a {
+    color: dimgrey;
+}
+
+div.list>ul :hover {
+    background-color: aliceblue;
+    color: black;
+}

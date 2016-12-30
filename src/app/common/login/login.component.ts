@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
       data => {
         setTimeout(() => {
           this.router.navigate(['/home']);
-        }, 2000);
+        }, 1500);
+        this.alertService.success('Successfully logged in!', true);
       },
       error => {
         this.alertService.error(error);

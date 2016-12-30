@@ -29,13 +29,14 @@ export class RegisterComponent implements OnInit {
       .subscribe(
       data => {
         setTimeout(() => {
-          this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']);
         }, 2000);
-
+        this.alertService.success('Registration successful', true);
       },
       error => {
-        this.alertService.error(error);
+        if (this.userService.getById(+this.model.id)) {
+          this.alertService.error('User already exists', true);
+        }
         this.loading = false;
       });
   }

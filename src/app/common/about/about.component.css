@@ -81,8 +81,8 @@
 
 .bs-calltoaction.bs-calltoaction-info{
     color: #fff;
-    background-color: #5bc0de;
-    border-color: #46b8da;
+    background-color: #EEEEEE;
+    border-color: lightslategray;
 }
 
 .bs-calltoaction.bs-calltoaction-success{
@@ -103,13 +103,14 @@
     border-color: #d43f3a;
 }
 
-.bs-calltoaction.bs-calltoaction-primary .cta-button .btn,
-.bs-calltoaction.bs-calltoaction-info .cta-button .btn,
-.bs-calltoaction.bs-calltoaction-success .cta-button .btn,
-.bs-calltoaction.bs-calltoaction-warning .cta-button .btn,
-.bs-calltoaction.bs-calltoaction-danger .cta-button .btn{
+.bs-calltoaction.bs-calltoaction-info .cta-button .btn {
+    background-color: #EEEEEE;
     font-weight: bold;
-    color: black;
-    border-color:black;
+    color: dimgray;
+    border-color:lightslategray;
     border: 1px solid;
+}
+.bs-calltoaction.bs-calltoaction-info .cta-button .btn:hover {
+    background-color: aliceblue;
+    color: black;
 }

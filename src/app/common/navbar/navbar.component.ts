@@ -15,14 +15,14 @@ export class NavbarComponent implements OnInit {
 
   private isActive: boolean = false;
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   logout() {
-        this.authService.logout();
-    }
+    this.authService.logout();
+  }
 
   toggle(categoriesLink: HTMLAnchorElement) {
     this.isActive = !this.isActive;
