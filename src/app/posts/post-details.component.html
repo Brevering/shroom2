@@ -9,7 +9,7 @@
           <li><span class="glyphicon glyphicon-folder-open" aria-hidden="true" aria-label="Category"></span>
             <a href="/category">{{post.category}}</a>
           </li>
-          <li><span class="glyphicon glyphicon-time" aria-hidden="true" aria-label="Date"></span>{{post.createdAt}}</li>
+          <li><span class="glyphicon glyphicon-time" aria-hidden="true" aria-label="Date"></span>{{post.createdAt | date}}</li>
           <li><span class="glyphicon glyphicon-user" aria-hidden="true" aria-label="User"></span> <a href="/profile">{{post.author}}</a></li>
         </ul>
       </div>
