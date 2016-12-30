@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AlertComponent } from './_directives/index';
+import { AlertComponent, ConfirmDirective } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService, NewsService } from './_services/index';
 
@@ -33,8 +33,7 @@ import { PostsService } from './services/posts.service';
         FormsModule,
         HttpModule,
         UserProfileModule,
-        AppRoutingModule,
-       
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,
@@ -49,7 +48,8 @@ import { PostsService } from './services/posts.service';
         HomeComponent,
         SafeUrlPipe,
         PostDetailsComponent,
-        AboutComponent
+        AboutComponent,
+        ConfirmDirective
     ],
     providers: [
         AuthGuard,

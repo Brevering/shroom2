@@ -9,22 +9,20 @@ import { AuthenticationService } from '../../_services/authentication.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  currentUser: User;
   @Input() isHidden: boolean;
+  @Input() currentUser: User;
   @Output() onToggleCategoryBox = new EventEmitter<boolean>();
 
   private isActive: boolean = false;
 
-  constructor(private authService: AuthenticationService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   logout() {
-        this.authService.logout();
-    }
+    this.authService.logout();
+  }
 
   toggle(categoriesLink: HTMLAnchorElement) {
     this.isActive = !this.isActive;

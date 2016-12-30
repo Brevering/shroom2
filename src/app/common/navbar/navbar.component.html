@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 list">
 
-    <ul class="nav nav-tabs nav-justified" >
+    <ul class="nav nav-tabs nav-justified">
       <li role="presentation">
         <a routerLink="/home" routerLinkActive="active"> Home </a>
       </li>
@@ -11,10 +11,10 @@
       </li>
 
       <li role="presentation" *ngIf="currentUser">
-        <a routerLink="/profile" routerLinkActive="active"> {{currentUser.user.username}} </a>
+        <a routerLink="/profile" routerLinkActive="active"> {{currentUser.username}} </a>
       </li>
       <li role="presentation" (click)="logout()" *ngIf="currentUser">
-        <a routerLink="/login" routerLinkActive="active"> Logout </a>
+        <a routerLink="/about" routerLinkActive="active"> Logout </a>
       </li>
 
       <li role="presentation" *ngIf="!currentUser">

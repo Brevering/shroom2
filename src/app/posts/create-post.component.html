@@ -1,5 +1,5 @@
 <h3>Create new post</h3>
-<form name="form" novalidate>
+<form id="post-create" name="form" novalidate>
   <div class="form-group">
     <label for="title-input" class="sr-only">Title</label>
     <input type="text" class="form-control input-lg" id="title-input" placeholder="Enter title" name="title" required [(ngModel)]="newsModel.title"
@@ -35,5 +35,5 @@
   </div>
 
   <button type="submit" class="btn btn-success">Submit</button>
-  <button type="reset" class="btn btn-danger">Reset</button>
+  <button type="button" (click)="reset()" class="btn btn-danger">Reset</button>
 </form>
