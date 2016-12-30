@@ -60,7 +60,7 @@ import { PostDetailsComponent } from './posts/post-details.component';
         AlertService,
         AuthenticationService,
         UserService,
-        NewsService
+        NewsService,
     ],
     bootstrap: [AppComponent]
 })
