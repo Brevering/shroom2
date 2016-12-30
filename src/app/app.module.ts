@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { UserProfileModule } from './user-profile/user-profile.module';
-
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
@@ -17,15 +15,16 @@ import { CategoriesListComponent } from './common/categories-list/categories-lis
 import { LoginComponent } from './common/login/login.component';
 import { RegisterComponent } from './common/register/register.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
-import { HomeComponent } from './home/home.component';
-import { SafeUrlPipe } from './home/safe-url.pipe';
-// import { UserProfileComponent } from './user-profile/user-profile.component';
-// import { CreatePostComponent } from './posts/create-post.component';
-// import { UserPostsListComponent } from './user-profile/user-posts-list.component';
-// import { UserProfileRoutingModule } from './user-profile/user-profile-routing.module';
 
-import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 import { PostDetailsComponent } from './posts/post-details.component';
+
+import { SafeUrlPipe } from './home/safe-url.pipe';
+
+import { UserProfileModule } from './user-profile/user-profile.module';
+import { AppRoutingModule } from './app-routing.module';
+
+import { PostsService } from './services/posts.service';
 
 
 @NgModule({
@@ -51,16 +50,14 @@ import { PostDetailsComponent } from './posts/post-details.component';
         SafeUrlPipe,
         PostDetailsComponent,
         AboutComponent
-        // UserProfileComponent,
-        // CreatePostComponent,
-        // UserPostsListComponent
     ],
     providers: [
         AuthGuard,
         AlertService,
         AuthenticationService,
         UserService,
-        NewsService
+        NewsService,
+        PostsService
     ],
     bootstrap: [AppComponent]
 })

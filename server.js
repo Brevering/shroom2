@@ -6,7 +6,7 @@ const express = require('express'),
  passport = require('passport'),
  config = require('./server/config/database'), // get db config file
  User = require('./server/data/models/User'), // get the mongoose model
- News = require('./server/data/models/News'),
+ PostModel = require('./server/data/models/post'),
  port = process.env.PORT || 3000,
  jwt = require('jwt-simple');
 
@@ -35,10 +35,10 @@ app.get('/', function(req, res) {
 // connect to database
 mongoose.connect(config.database);
 
+// why do you need it 2 times ??
 let UserModel = require('./server/data/models/User');
 UserModel.init();
 
-// let NewsModel = require('./server/data/models/News');
  
 // pass passport for configuration
 require('./server/config/passport')(passport);
@@ -47,15 +47,16 @@ require('./server/config/passport')(passport);
 var apiRoutes = express.Router();
 
 let usersController = require('./server/controllers/UsersController');
-let newsController = require('./server/controllers/NewsController');
+let postsController = require('./server/controllers/posts-controller');
 
 // create a new user account (POST http://localhost:8080/api/signup)
 apiRoutes.post('/signup', usersController.postRegister);
 apiRoutes.post('/authenticate', usersController.postAuthenticate);
 apiRoutes.get('/users', usersController.getAll);
 
-apiRoutes.get('/News', newsController.GetAllNews);
-apiRoutes.post('/News', newsController.createArticle);
+apiRoutes.get('/post/:id', postsController.getById);
+apiRoutes.get('/posts', postsController.get);
+apiRoutes.post('/posts', postsController.create);
  
 // connect the api routes under /api/*
 app.use('/api', apiRoutes);

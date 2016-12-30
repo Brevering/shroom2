@@ -6,7 +6,7 @@
       <p class="text" *ngIf="post.body">{{post.body}}</p>
       <img *ngIf="post.imgLink" [src]="post.imgLink">
       <iframe *ngIf="post.videoLink" [src]="post.videoLink | safeUrl" frameborder="0" allowfullscreen></iframe>
-      <iframe *ngIf="post.soundLink" [src]="post.soundLink | safeUrl" frameborder="0" scrolling="no" webkitallowfullscreen mozallowfullscreen
+      <iframe *ngIf="post.audioLink" [src]="post.audioLink | safeUrl" frameborder="0" scrolling="no" webkitallowfullscreen mozallowfullscreen
         allowfullscreen></iframe>
     </div>
   </div>
