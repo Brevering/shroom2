@@ -16,7 +16,7 @@ let newsSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        required: true,
+        required: false,
         enum: typeOfArticles,
         default: "Text"
     },
@@ -36,7 +36,7 @@ let newsSchema = mongoose.Schema({
     },
     author: {
         type: String,
-        required: true
+        required: false
     },
     createdAt: {
         type: Date,

@@ -32,5 +32,8 @@ export class CreatePostComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-
+  reset() {
+    let resetForm = <HTMLFormElement>document.getElementById('post-create');
+    resetForm.reset();
+  }
 }
