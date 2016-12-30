@@ -24,6 +24,7 @@ export class PostDetailsComponent implements OnInit {
   ngOnInit() {
     // this.activatedRoute.params.subscribe(params => { this.postId = params['id']; });
     // this.activatedRoute.params.subscribe(params => { console.log(params['id']); });
+
     // this.activatedRoute.params
     // .switchMap((params: Params) => this.postsService.getPostById(params['id']))
     // .subscribe(post => this.post = post, error =>  console.log(error));
@@ -31,8 +32,11 @@ export class PostDetailsComponent implements OnInit {
     let id = this.activatedRoute.snapshot.params['id'];
     this.postsService
       .getPostById(id)
-      .subscribe(po => this.post = po, error => this.errorMessage = <any>error);
-    console.log(this.post);
+      .subscribe(po => {
+        console.log(po);
+        this.post = po;
+        console.log(this.post);
+      });
   }
 
   public goBack(): void {

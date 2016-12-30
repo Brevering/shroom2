@@ -8,6 +8,9 @@
       <iframe *ngIf="post.videoLink" [src]="post.videoLink | safeUrl" frameborder="0" allowfullscreen></iframe>
       <iframe *ngIf="post.audioLink" [src]="post.audioLink | safeUrl" frameborder="0" scrolling="no" webkitallowfullscreen mozallowfullscreen
         allowfullscreen></iframe>
+      <div class="caption text-center">
+        <p><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span></p>
+      </div>
     </div>
   </div>
 </div>

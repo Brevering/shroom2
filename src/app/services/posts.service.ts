@@ -23,13 +23,13 @@ export class PostsService {
                .catch(this.handleError);
   }
 
-  getPostById(id: string): Observable<Post> {
+  getPostById(id: string){
     return this.http
                .get(`http://localhost:3000/api/post/${id}`)
                .map((res: Response) => {
                  let body = res.json();
                  //console.log(body.data as Post);
-                 return body.data as Post;
+                 return body.data;
                })
                .catch(this.handleError);
   }
