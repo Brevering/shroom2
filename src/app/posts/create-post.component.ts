@@ -16,7 +16,7 @@ export class CreatePostComponent implements OnInit {
     private router: Router,
     private newsService: NewsService,
     private alertService: AlertService,
-    private userService: UserService) { }
+    private x: UserService) { }
 
   ngOnInit() {
   }
@@ -37,3 +37,4 @@ export class CreatePostComponent implements OnInit {
     resetForm.reset();
   }
 }
+

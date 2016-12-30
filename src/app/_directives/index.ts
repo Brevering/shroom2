@@ -1,2 +1,2 @@
 ﻿export * from './alert.component';
-export * from './confirmation.component';
+export * from './confirmation.directive';

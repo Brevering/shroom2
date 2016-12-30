@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { UserProfileModule } from './user-profile/user-profile.module';
 
 import { AppComponent } from './app.component';
-import { AlertComponent, ConfirmationDirective } from './_directives/index';
+import { AlertComponent, ConfirmDirective } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService, NewsService } from './_services/index';
 
@@ -51,7 +51,7 @@ import { PostDetailsComponent } from './posts/post-details.component';
         PostDetailsComponent,
         AboutComponent,
 
-        ConfirmationDirective
+        ConfirmDirective
         // UserProfileComponent,
         // CreatePostComponent,
         // UserPostsListComponent
