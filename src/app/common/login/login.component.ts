@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-// why would login should know about user service? 
-import { AlertService, AuthenticationService } from '../../_services/index';
+import { AuthenticationService } from '../../_services/index';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-login',

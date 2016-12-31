@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { AlertService, UserService } from '../../_services/index';
+import { UserService } from '../../_services/index';
+import { AlertService } from '../../services/alert.service';
 import { User } from '../../_models/index';
 
 @Component({

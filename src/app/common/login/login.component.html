@@ -14,11 +14,9 @@
       </div>
 
       <p>You don't have an account yet? Register <a routerLink="/register">here</a></p>
-      <button type="submit" [disabled]="loading" class="btn btn-success">Login</button>
+      <button type="submit" class="btn btn-success" *ngIf="!loading">Login</button>
       <img class="loading" *ngIf="loading" src="http://orig06.deviantart.net/df77/f/2013/094/8/d/loading_logofinal_by_zegerdon-d60eb1v.gif"
       />
-      <br><br>
-      <a class="btn btn-default center-block" role="button" routerLink="/home">No, thanks! Just show me random pictures</a>
     </form>
     <hr/>
   </div>
