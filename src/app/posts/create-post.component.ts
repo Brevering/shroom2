@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Post } from '../shared/models/post';
-import { PostsService } from '../services/posts.service';
-import { AlertService } from '../services/alert.service';
+import { Post } from '../_models/post';
+import { AlertService, PostsService } from '../_services/index';
 
 @Component({
   selector: 'app-create-post',
@@ -35,7 +34,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   create() {
-    this.post.author = "pesho"; // get this from UserService or somewhere.....
+    this.post.author = JSON.parse(localStorage.getItem('currentUser')).username;
     this.postsService.createPost(this.post)
       .subscribe(
       createdPost => {

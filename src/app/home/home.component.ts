@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PostsService } from '../services/posts.service';
-import { Post } from '../shared/models/post';
+import { PostsService } from '../_services/index';
+import { Post } from '../_models/post';
 
 @Component({
   selector: 'app-home',

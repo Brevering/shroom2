@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AlertComponent, ConfirmDirective, EqualValidator } from './_directives/index';
-import { AuthenticationService, UserService } from './_services/index';
+import { ConfirmDirective, EqualValidator } from './_directives/index';
+
 
 // Common components
+import { AlertComponent } from './common/alert/alert.component';
 import { AboutComponent } from './common/about/about.component';
 import { SearchbarComponent } from './common/searchbar/searchbar.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
@@ -26,8 +27,7 @@ import { PostDetailsComponent } from './posts/post-details.component';
 import { UserProfileModule } from './user-profile/user-profile.module';
 
 // Services
-import { PostsService } from './services/posts.service';
-import { AlertService } from './services/alert.service';
+import { AuthenticationService, UserService, AlertService, PostsService } from './_services/index';
 
 // Pipes 7 Directives
 import { SafeUrlPipe } from './home/safe-url.pipe';

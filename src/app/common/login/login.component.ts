@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../../_services/index';
-import { AlertService } from '../../services/alert.service';
+import { AlertService } from '../../_services/index';
 
 @Component({
   selector: 'app-login',

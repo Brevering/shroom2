@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 
 import { User, News } from '../_models/index';
-import { UserService, NewsService, AlertService } from '../_services/index';
+import { UserService, NewsService, AlertService } from '../../_services/index';
 
 
 @Component({

@@ -3,8 +3,8 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-import { PostsService } from '../services/posts.service';
-import { Post } from '../shared/models/post';
+import { PostsService } from '../_services/index';
+import { Post } from '../_models/post';
 
 @Component({
   selector: 'app-post-details',

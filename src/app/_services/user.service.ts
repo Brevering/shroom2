@@ -2,7 +2,7 @@
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { User } from '../_models/index';
+import { User, Post } from '../_models/index';
 
 @Injectable()
 export class UserService {
@@ -26,6 +26,10 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
+
+    addPostToUser(post: Post) {
+
     }
 
     // private helper methods

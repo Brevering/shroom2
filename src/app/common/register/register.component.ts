@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { UserService } from '../../_services/index';
-import { AlertService } from '../../services/alert.service';
+import { UserService, AlertService } from '../../_services/index';
 import { User } from '../../_models/index';
 
 @Component({

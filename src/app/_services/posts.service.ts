@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { Post } from '../shared/models/post';
+import { Post } from '../_models/post';
 
 @Injectable()
 export class PostsService {
