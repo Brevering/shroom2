@@ -2,25 +2,33 @@
   <div class="col-md-8 col-md-offset-2">
     <alert></alert>
     <form class="text-center" role="form" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+      <div class="form-group" [ngClass]="{ 'has-error': !firstName.pristine && !firstName.valid }">
         <label for="firstName">First Name</label>
         <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" pattern="[A-Za-z]+" #firstName="ngModel" required />
-        <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name must contain only latin letters</div>
+        <div class="help-block">
+          <span [hidden]="firstName.valid || firstName.pristine">First Name must contain only latin letters</span>
+        </div>
       </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+      <div class="form-group" [ngClass]="{ 'has-error': !lastName.pristine && !lastName.valid }">
         <label for="lastName">Last Name</label>
         <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" pattern="[A-Za-z]+" #lastName="ngModel" required />
-        <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name must contain only latin letters</div>
+        <div class="help-block">
+          <span [hidden]="lastName.valid || lastName.pristine">Last Name must contain only latin letters</span>
+        </div>
       </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+      <div class="form-group" [ngClass]="{ 'has-error': !username.pristine && !username.valid }">
         <label for="username">Username</label>
         <input type="text" class="form-control" name="username" [(ngModel)]="model.username" pattern="^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){2,13}[a-zA-Z0-9]$" minlength="3" maxlength="15" #username="ngModel" required />
-        <div *ngIf="f.submitted && !username.valid" class="help-block">Username must be between 4 and 15 characters and must contain only latin letters and digits</div>
+        <div class="help-block">
+          <span [hidden]="username.pristine || username.valid">Username must be between 4 and 15 characters and must contain only latin letters and digits</span>
+        </div>
       </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+      <div class="form-group" [ngClass]="{ 'has-error': !password.pristine && !password.valid }">
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" [(ngModel)]="model.password" pattern="^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){2,13}[a-zA-Z0-9]$" #password="ngModel" required />
-        <div *ngIf="f.submitted && !password.valid" class="help-block">Password must be between 4 and 15 characters and must contain only latin letters and digits</div>
+        <div class="help-block">
+          <span [hidden]="password.valid || password.pristine" >Password must be between 4 and 15 characters and must contain only latin letters and digits</span>
+        </div>
       </div>
 
       <p>You already have an account?? Go back to <a routerLink="/login">login</a></p>
