@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h2>Shroomz 2 <small>In the world of shroomy content</small></h2>
+                <h2>Shroomz
+                    <small>In the world of shroomy content</small>
+                    </h2>
             </div>
         </div>
     </div>
@@ -13,37 +15,12 @@
         <div class="row" *ngIf="!isAuthenticated">
             <div class="col-md-12">
                 <div class="jumbotron">
-                    <h1>Hello, dear Shroomer !</h1>
-                    <p>Some fancy text here evetuanlly + maybe pictures inside the jumbotron ooor ... bg with oppacity 10
-                    </p>
+                    <!-- Too much images loading ? Maybe delete this one -->
+                    <img class="img img-responsive logo-nav" src="https://upload.wikimedia.org/wikipedia/commons/1/17/BlankMap-World-noborders.png" alt="World Map">
                 </div>
                 <hr/>
             </div>
         </div>
         <router-outlet></router-outlet>
-    </div>
-    <div class="row" *ngIf="!isAuthenticated">
-        <div class="col-md-6">
-            <h4>Credits</h4>
-            <p>
-                <a href="https://github.com/Brevering/shroom2" target="_top">Angular 2 SPA project</a>
-            </p>
-            <p>
-                <a href="http://infshroom.herokuapp.com" target="_top">by Infected Mushroom team</a>
-            </p>
-        </div>
-        <div class="col-md-6">
-            <div class="row text-center">
-                <div class="col-xs-2">
-                    <a><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                </div>
-                <div class="col-xs-2">
-                    <a><i class="fa fa-5x fa-fw fa-facebook"></i></a>
-                </div>
-                <div class="col-xs-2 text-center">
-                    <a><i class="fa fa-5x fa-fw fa-github"></i></a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

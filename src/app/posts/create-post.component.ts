@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-// this needs refactoring
-import { UserService, NewsService, AlertService } from '../_services/index';
+import { Post } from '../shared/models/post';
+import { PostsService } from '../services/posts.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-create-post',
@@ -10,27 +11,41 @@ import { UserService, NewsService, AlertService } from '../_services/index';
   styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
-  newsModel: any = {};
+  typeOfPosts: string[] = ['text', 'video', 'image', 'audio'];
+  typesOfGlyphs: string[] = ['pencil', 'facetime-video', 'picture', 'cd'];
+
+  // take from CategoryService
+  categories: string[] = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5', 'Category 6'];
+
+  isTypeSelected: boolean = false;
+  post: any = {};
 
   constructor(
     private router: Router,
-    private newsService: NewsService,
-    private alertService: AlertService,
-    private userService: UserService) { }
+    private postsService: PostsService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
+    //get categories
+  }
+
+  onToggle() {
+    this.isTypeSelected = !this.isTypeSelected;
+    console.log(this.post.type);
   }
 
   create() {
-    this.newsService.createNews(this.newsModel)
+    this.post.author = "pesho"; // get this from UserService or somewhere.....
+    this.postsService.createPost(this.post)
       .subscribe(
-      data => {
+      createdPost => {
         this.alertService.success('Article Created!');
+        // userService.addPostToUser()
         this.router.navigate(['/home']);
       },
       error => {
         this.alertService.error(error);
       });
   }
-
 }
+

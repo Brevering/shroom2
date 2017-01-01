@@ -3,7 +3,8 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-import { POSTS } from '../home/posts-mocked';
+import { PostsService } from '../services/posts.service';
+import { Post } from '../shared/models/post';
 
 @Component({
   selector: 'app-post-details',
@@ -11,23 +12,34 @@ import { POSTS } from '../home/posts-mocked';
   styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit {
-  post; //of type post
-  postId: number;
+  errorMessage: string;
+  post;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private location: Location) { }
+    private location: Location,
+    private postsService: PostsService) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => { this.postId = +params['id']; });
-    // .switchMap((params: Params) => this.service.getPost(+params['id']))
-    // .subscribe((post: Post) => this.post = post);
-    this.post = POSTS[this.postId - 1];
+    // this.activatedRoute.params.subscribe(params => { this.postId = params['id']; });
+    // this.activatedRoute.params.subscribe(params => { console.log(params['id']); });
+
+    // this.activatedRoute.params
+    // .switchMap((params: Params) => this.postsService.getPostById(params['id']))
+    // .subscribe(post => this.post = post, error =>  console.log(error));
+
+    let id = this.activatedRoute.snapshot.params['id'];
+    this.postsService
+      .getPostById(id)
+      .subscribe(po => {
+        console.log(po);
+        this.post = po;
+        console.log(this.post);
+      });
   }
 
   public goBack(): void {
-    // navigates backward one step in the browser's history stack using the Location service 
     this.location.back();
   }
 

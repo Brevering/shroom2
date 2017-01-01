@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 
-// import post model
-import { POSTS } from './posts-mocked';
+import { PostsService } from '../services/posts.service';
+import { Post } from '../shared/models/post';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +10,23 @@ import { POSTS } from './posts-mocked';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  posts;
+  errorMessage: string;
+  posts: Post[];
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private postsService: PostsService) { }
 
   ngOnInit() {
-    this.posts = POSTS;
+    this.postsService
+    .getPosts()
+    .subscribe(posts => this.posts = posts, error =>  this.errorMessage = <any>error);
   }
 
   onSelect(post) {
-    this.router.navigate(['/post', post.id]);
+    this.router.navigate(['/post', post._id]);
   }
 
 
 }
+
