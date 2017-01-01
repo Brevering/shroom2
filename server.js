@@ -49,7 +49,6 @@ var apiRoutes = express.Router();
 let usersController = require('./server/controllers/UsersController');
 let newsController = require('./server/controllers/NewsController');
 
-// create a new user account (POST http://localhost:8080/api/signup)
 apiRoutes.post('/signup', usersController.postRegister);
 apiRoutes.post('/authenticate', usersController.postAuthenticate);
 apiRoutes.get('/users', usersController.getAll);
@@ -62,4 +61,4 @@ app.use('/api', apiRoutes);
  
 // Start the server
 app.listen(port);
-console.log('There will be dragons: http://localhost:' + port);
+console.log('Server is active at: http://localhost:' + port);
