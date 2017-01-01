@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AlertComponent, ConfirmDirective } from './_directives/index';
+import { AlertComponent, ConfirmDirective, EqualValidator } from './_directives/index';
 import { AuthenticationService, UserService } from './_services/index';
 
 // Common components
@@ -58,7 +58,8 @@ import { AppRoutingModule } from './app-routing.module';
         SafeUrlPipe,
         PostDetailsComponent,
         AboutComponent,
-        ConfirmDirective
+        ConfirmDirective,
+        EqualValidator
     ],
     providers: [
         AuthGuard,
