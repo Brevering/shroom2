@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
         this.userService.getLikesCount(this.currentUsername)
             .subscribe(
             counts => {
-                console.log(counts);
+                //console.log(counts);
                 this.postsCount = counts[0].postsCount;
                 this.likesCount = counts[0].likesCount;
             },
