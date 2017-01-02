@@ -16,6 +16,7 @@ import { PostDetailsComponent } from './posts/index';
 const appRoutes: Routes = [
 
     { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home/:page', canActivate: [AuthGuard], component: HomeComponent },
     { path: 'post/:id', component: PostDetailsComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

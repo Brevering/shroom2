@@ -52,6 +52,8 @@ export class AuthenticationService {
 
         // notify any subscribers of logout via observable subject
         this.subject.next();
+
+
     }
 
     getStatus(): Observable<any> {
