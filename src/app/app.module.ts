@@ -30,7 +30,10 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { AuthenticationService, UserService, AlertService, PostsService } from './_services/index';
 
 // Pipes 7 Directives
-import { SafeUrlPipe } from './home/safe-url.pipe';
+// import { SafeUrlPipe } from './home/safe-url.pipe';
+
+// Pipes
+import { PostsFilterPipe } from './home/posts-filter.pipe'
 
 // Guards
 import { AuthGuard } from './_guards/index';
@@ -55,11 +58,12 @@ import { AppRoutingModule } from './app-routing.module';
         RegisterComponent,
         NotFoundComponent,
         HomeComponent,
-        SafeUrlPipe,
+        // SafeUrlPipe,
         PostDetailsComponent,
         AboutComponent,
         ConfirmDirective,
-        EqualValidator
+        EqualValidator,
+        PostsFilterPipe
     ],
     providers: [
         AuthGuard,

@@ -8,6 +8,8 @@ import { UserProfileComponent, UserPostsListComponent, UserProfileUpdateComponen
 import { CreatePostComponent } from '../posts/index';
 import { UserLikesListComponent } from './user-likes-list.component';
 
+import { SafeUrlPipe } from '../home/safe-url.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +22,10 @@ import { UserLikesListComponent } from './user-likes-list.component';
     UserProfileUpdateComponent,
     CreatePostComponent,
     UserLikesListComponent,
-    UserLikesListComponent]
+    UserLikesListComponent,
+    SafeUrlPipe],
+  exports: [
+    SafeUrlPipe
+  ]
 })
 export class UserProfileModule { }

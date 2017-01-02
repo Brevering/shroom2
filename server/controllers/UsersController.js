@@ -140,28 +140,17 @@ function addToUserPosts(req, res) {
         });
 }
 
-function updateUserProfile(req, res) {
-    let newUserData = req.body;
-    users.update(newUserData, function (err, user) {
-        if (err) {
-            return res.status(400).json({
-                success: false,
-                msg: {
-                    code: err.code,
-                    message: err.message
-                }
-            });
-        }
+function getLikes(req, res) {
+    let username = req.query.user;
 
-        return res.status(201).json({
-            success: true,
-            user: {
-                username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName
-            }
-        });
+    User.findOne({ username: username }, { likes: 1 }, function (err, userWithLikes) {
+        if (err) {
+            res.status(401).send({ err: err });
+        } else {
+            res.status(200).json({ data: userWithLikes });
+        }
     });
+
 }
 
 module.exports = {
@@ -169,10 +158,9 @@ module.exports = {
     postAuthenticate,
     getAll,
 
-    updateUserProfile,
-
     addToUserLikes,
     removeFromUserLikes,
     ifLiked,
-    addToUserPosts
+    addToUserPosts,
+    getLikes
 };

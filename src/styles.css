@@ -74,3 +74,6 @@ ul#category-list li {
     font-size: 5em;
 }
 
+.glyphicon-heart-empty, .glyphicon-heart {
+    color: darkred;
+}

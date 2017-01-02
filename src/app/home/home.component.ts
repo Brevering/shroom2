@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PostsService } from '../_services/index';
@@ -12,6 +12,7 @@ import { Post } from '../_models/post';
 export class HomeComponent implements OnInit {
   errorMessage: string;
   posts: Post[];
+  @Input() filtertext: string;
 
   constructor(
     private router: Router,
