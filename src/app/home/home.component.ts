@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   private posts: Post[] = [];
   private pageSize: number;
-  private currentPage: number;
+  private currentPage: number = 1;
   private numberOfPages: number;
 
   @Input() filtertext: string;
@@ -29,8 +29,10 @@ export class HomeComponent implements OnInit {
       this.posts = posts;
       this.numberOfPages = Math.ceil(this.posts.length / this.pageSize);
     });
-    this.route.params.map(params => params['page']).subscribe((page) => {this.currentPage = page; });
-    this.currentPage = this.route.snapshot.params['page'];
+    this.route.params.map(params => params['page']).subscribe((page) => {if (page) {this.currentPage = page; } });
+    if (!this.currentPage){
+      this.currentPage = this.route.snapshot.params['page'];
+    }
       }
 
   onSelect(post) {
