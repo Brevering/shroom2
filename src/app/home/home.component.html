@@ -1,35 +1,18 @@
 <app-searchbar (onTextInput)="filterText=$event"></app-searchbar>
 <div class="row">
-  <div class="col-md-3" *ngFor="let post of posts | postsFilter:filterText">
+  <div class="col-md-3" *ngFor="let post of posts | postsFilter:filterText | postsPaging:currentPage:pageSize">
     <div class="thumbnail" (click)="onSelect(post)">
-        <h5 class="text-muted">{{post.title}}</h5>
-        <hr>
-        <ul class="list-inline">
-          <li><span class="glyphicon glyphicon-folder-open" aria-hidden="true" aria-label="Category"></span>
-            <a href="/category">{{post.category}}</a>
-          </li>
-          <li><span class="glyphicon glyphicon-time" aria-hidden="true" aria-label="Date"></span>{{post.createdAt | date}}</li>
-          <li><span class="glyphicon glyphicon-user" aria-hidden="true" aria-label="User"></span> <a href="/profile">{{post.author}}</a></li>
-        </ul>
+      <!--<p class="text" *ngIf="post.title">{{post.title}}</p>    -->
+      <p class="text" *ngIf="post.body">{{post.body}}</p>
+      <img *ngIf="post.imgLink" [src]="post.imgLink">
+      <iframe *ngIf="post.videoLink" [src]="post.videoLink | safeUrl" frameborder="0" allowfullscreen></iframe>
+      <iframe *ngIf="post.audioLink" [src]="post.audioLink | safeUrl" frameborder="0" scrolling="no" webkitallowfullscreen mozallowfullscreen
+        allowfullscreen></iframe>
+      <div class="caption text-center">
+        <p><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span></p>
       </div>
-      <div *ngIf="post.body">
-        <p class="text-muted" style="text-overflow: ellipsis">{{post.body}}</p>
-      </div>
-      <div *ngIf="post.imgLink">
-        <img [src]="post.imgLink" class="img-responsive" alt="Responsive image">
-      </div>
-      <div class="embed-responsive embed-responsive-16by9" *ngIf="post.videoLink">
-        <iframe class="embed-responsive-item" [src]="post.videoLink | safeUrl"></iframe>
-      </div>
-      <div class="embed-responsive embed-responsive-16by9" *ngIf="post.audioLink">
-        <iframe class="embed-responsive-item" [src]="post.audioLink | safeUrl"></iframe>
-      </div>
-      <div class="center-block text-center">
-        <ul class="list-inline">
-          <li><a role="button" *ngIf="!isLiked" (click)=like()><span class="glyphicon glyphicon-heart-empty gi-3x" aria-hidden="true" aria-label="Like"></span></a></li>
-          <li><a role="button" *ngIf="isLiked" (click)=dislike()><span class="glyphicon glyphicon-heart gi-3x" aria-hidden="true" aria-label="Liked"></span></a></li>
-        </ul>
-      </div>
+    </div>
   </div>
+  <app-pager [numberOfPages]="numberOfPages" (pageChanged)="onPageChange($event)"></app-pager>
   <div class="clearfix visible-md-inline"></div>
 </div>

@@ -16,9 +16,13 @@ export class UserService {
         return this.http.get('http://localhost:3000/api/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
-    getByUsername(username) {
-        return this.http.get('http://localhost:3000/api/users/' + String(username))
-            .map((res: Response) => res.json());
+    getByUsername(username: string) {
+        return this.http.get('http://localhost:3000/api/users/' + username)
+            .map((res: Response) => {
+                let body = res.json();
+                return body;
+            })
+            .catch(this.handleError);
     }
 
     create(user: User) {
@@ -26,27 +30,8 @@ export class UserService {
     }
 
     update(user: User) {
-        let headers = new Headers();
-        let token = this.getToken();
-
-        headers.append('content-type', 'application/json');
-        headers.append('authorization', token);
-
-        return this.http.post(
-            'http://localhost:3000/api/users',
-            JSON.stringify(user),
-            { headers: headers })
-            .map((response: Response) => {
-                let updatedUser = response.json();
-                if (updatedUser && updatedUser.success) {
-                    // update stored user details in local storage
-                    let storedUser = JSON.parse(localStorage.getItem('currentUser'));
-                    storedUser.user = updatedUser.user;
-                    localStorage.setItem('currentUser', JSON.stringify(storedUser));
-                }
-
-                return updatedUser;
-            });
+        return this.http.post('http://localhost:3000/api/users/' + user.username, user)
+            .map((response: Response) => response.json());
     }
 
     delete(id: number) {
@@ -181,11 +166,6 @@ export class UserService {
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });
         }
-    }
-
-    private getToken(): string {
-        let storedUser = localStorage.getItem('currentUser');
-        return storedUser ? JSON.parse(storedUser).token : null;
     }
 
     private handleError(error: Response | any) {

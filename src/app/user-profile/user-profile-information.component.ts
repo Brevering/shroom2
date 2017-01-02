@@ -1,16 +1,12 @@
 import { Component, Input, OnInit, trigger, state, style, animate, transition } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 
-import { AlertService } from '../_services/index';
-
 @Component({
-    selector: 'app-user-profile-update',
-    templateUrl: './user-profile-update.html',
+    selector: 'app-user-info',
+    templateUrl: './user-profile-information.html',
+    styleUrls: ['./user-profile-information.css'],
     host: {
         '[@routeAnimation]': 'true',
         '[style.display]': "'block'",
@@ -27,27 +23,25 @@ import { AlertService } from '../_services/index';
     ]
 })
 
-export class UserProfileUpdateComponent implements OnInit {
-    loading = false;
+export class UserProfileInformationComponent implements OnInit {
+
     @Input() user: User = new User;
-
-    constructor(
-        private router: Router,
-        private userService: UserService,
-        private alert: AlertService) { }
-
-    ngOnInit() {
+    constructor(private userService: UserService) {
         let storageUser = JSON.parse(localStorage.getItem('currentUser'));
         this.user.username = storageUser.username;
     }
 
+    ngOnInit() {
+        this.getUserInformation();
+    }
 
-    onSubmit() {
-        this.userService.update(this.user)
-            .subscribe(dbItem => {
-                this.user.firstName = dbItem.firstName;
-                this.user.lastName = dbItem.lastName;
-                this.router.navigate(['/profile']);
+    getUserInformation() {
+        this.userService.getByUsername(this.user.username)
+            .subscribe(loadedUser => {
+                console.log('Loaded user', loadedUser[0]);
+                this.user.firstName = loadedUser[0].firstName;
+                this.user.lastName = loadedUser[0].lastName;
+                this.user.registeredAt = loadedUser[0].registeredAt;
             });
     }
 }

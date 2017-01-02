@@ -3,13 +3,18 @@
     <form ngForm name="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" #username [(ngModel)]="user.username" />
+            <input type="text" class="form-control" name="username" #username [(ngModel)]="user.username" disabled/>
 
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" #firstName [(ngModel)]="user.firstName" />
-            
+            <input type="text" class="form-control" name="firstName" pattern="[A-Za-z]+" #firstName [(ngModel)]="user.firstName" />
+            <div class="help-block">
+                <small>First Name must contain only latin letters</small>
+            </div>
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" #lastName [(ngModel)]="user.lastName" />
+            <input type="text" class="form-control" name="lastName" pattern="[A-Za-z]+" #lastName [(ngModel)]="user.lastName" />
+            <div class="help-block">
+                <small>Last Name must contain only latin letters</small>
+            </div>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Update!</button>

@@ -155,12 +155,26 @@ function removeFromUserPosts(req, res) {
         });
 }
 
-function updateUserProfile(req, res) {
-    let userData = req.body;
+function getUserInformation(req, res) {
+    User.find({ username: req.params.username }, function (err, user) {
+        if (!user.length) {
+            throw Error('There is not such username');
+        } else {
+            console.log(user);
+            res.status(200).json(user);
+        }
+    });
+}
 
-    users.update(userData.username, function (err, user) {
-        if (err) {
-            return res.status(409).json({ success: false, msg: { code: err.code, message: err.message } });
+
+function updateUserProfile(req, res) {
+    User.find({ username: req.params.username }, function (err, user) {
+        if (!user.length)
+            throw Error('There is not such username');
+        else {
+            user[0].firstName = req.body.firstName;
+            user[0].lastName = req.body.lastName;
+            user[0].save().then(res.send(user[0]));
         }
     });
 };
@@ -230,6 +244,7 @@ module.exports = {
     postRegister,
     postAuthenticate,
     getAll,
+    getUserInformation,
     updateUserProfile,
 
     addToUserLikes,

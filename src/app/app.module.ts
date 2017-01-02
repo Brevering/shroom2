@@ -18,7 +18,7 @@ import { RegisterComponent } from './common/register/register.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
 
 // Home-related Components
-import { HomeComponent } from './home/home.component';
+import { HomeComponent, PagerComponent } from './home/index';
 
 // Post related Components
 import { PostDetailsComponent } from './posts/post-details.component';
@@ -33,7 +33,7 @@ import { AuthenticationService, UserService, AlertService, PostsService } from '
 // import { SafeUrlPipe } from './home/safe-url.pipe';
 
 // Pipes
-import { PostsFilterPipe } from './home/posts-filter.pipe'
+import { PostsFilterPipe, PostsPagingPipe } from './home/index'
 
 // Guards
 import { AuthGuard } from './_guards/index';
@@ -61,9 +61,11 @@ import { AppRoutingModule } from './app-routing.module';
         // SafeUrlPipe,
         PostDetailsComponent,
         AboutComponent,
+        PagerComponent,
         ConfirmDirective,
         EqualValidator,
-        PostsFilterPipe
+        PostsFilterPipe,
+        PostsPagingPipe
     ],
     providers: [
         AuthGuard,
