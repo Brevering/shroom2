@@ -13,7 +13,12 @@ export class UserService {
     }
 
     getById(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get('http://localhost:3000/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
+
+    getByUsername(username) {
+        return this.http.get('http://localhost:3000/api/users/' + String(username))
+            .map((res: Response) => res.json());
     }
 
     create(user: User) {
@@ -21,7 +26,27 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+        let headers = new Headers();
+        let token = this.getToken();
+
+        headers.append('content-type', 'application/json');
+        headers.append('authorization', token);
+
+        return this.http.post(
+            'http://localhost:3000/api/users',
+            JSON.stringify(user),
+            { headers: headers })
+            .map((response: Response) => {
+                let updatedUser = response.json();
+                if (updatedUser && updatedUser.success) {
+                    // update stored user details in local storage
+                    let storedUser = JSON.parse(localStorage.getItem('currentUser'));
+                    storedUser.user = updatedUser.user;
+                    localStorage.setItem('currentUser', JSON.stringify(storedUser));
+                }
+
+                return updatedUser;
+            });
     }
 
     delete(id: number) {
@@ -40,7 +65,6 @@ export class UserService {
             username: author,
             post: post
         };
-
         return this.http
             .post(`http://localhost:3000/api/users/like`, bodyToSend, options)
             .map((res: Response) => {
@@ -79,7 +103,7 @@ export class UserService {
             .catch(this.handleError);
     }
 
-     addPostToUserPosts(author: string, post: Post) {
+    addPostToUserPosts(author: string, post: Post) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
@@ -106,6 +130,11 @@ export class UserService {
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });
         }
+    }
+
+    private getToken(): string {
+        let storedUser = localStorage.getItem('currentUser');
+        return storedUser ? JSON.parse(storedUser).token : null;
     }
 
     private handleError(error: Response | any) {

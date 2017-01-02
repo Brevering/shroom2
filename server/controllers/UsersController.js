@@ -140,10 +140,36 @@ function addToUserPosts(req, res) {
         });
 }
 
+function updateUserProfile(req, res) {
+    let newUserData = req.body;
+    users.update(newUserData, function (err, user) {
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                msg: {
+                    code: err.code,
+                    message: err.message
+                }
+            });
+        }
+
+        return res.status(201).json({
+            success: true,
+            user: {
+                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName
+            }
+        });
+    });
+}
+
 module.exports = {
     postRegister,
     postAuthenticate,
     getAll,
+
+    updateUserProfile,
 
     addToUserLikes,
     removeFromUserLikes,
