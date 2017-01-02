@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 
 import { User } from '../../_models/index';
 import { AuthenticationService } from '../../_services/authentication.service';
@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../_services/authentication.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, DoCheck {
   @Input() isHidden: boolean;
   @Input() currentUser: User;
   @Output() onToggleCategoryBox = new EventEmitter<boolean>();
@@ -22,6 +22,10 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  ngDoCheck() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   toggle(categoriesLink: HTMLAnchorElement) {
