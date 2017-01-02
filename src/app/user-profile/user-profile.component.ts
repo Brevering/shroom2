@@ -36,7 +36,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.userService.getLikesCount(this.currentUsername)
+        this.userService.getCounts(this.currentUsername)
             .subscribe(
             counts => {
                 //console.log(counts);

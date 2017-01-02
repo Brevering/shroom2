@@ -62,7 +62,6 @@ function getAll(req, res) {
     });
 }
 
-
 function addToUserLikes(req, res) {
     let username = req.body.username;
     let post = req.body.post;
@@ -140,6 +139,22 @@ function addToUserPosts(req, res) {
         });
 }
 
+function removeFromUserPosts(req, res) {
+    let username = req.body.username;
+    let post = req.body.post;
+
+    User.update(
+        { username: username, "posts._id": post._id },
+        { $set: { "posts.$.isDeleted": true } },
+        function (err, updatedUser) {
+            if (err) {
+                res.status(401).send({ err: err });
+            } else {
+                res.status(200).json({ data: updatedUser });
+            }
+        });
+}
+
 function updateUserProfile(req, res) {
     let userData = req.body;
 
@@ -153,7 +168,7 @@ function updateUserProfile(req, res) {
 function getLikes(req, res) {
     let username = req.query.user;
 
-    User.findOne({ username: username }, { likes: 1 }, function (err, userWithLikes) {
+    User.findOne({ username: username, $where: "this.isDeleted === false" }, { likes: 1 }, function (err, userWithLikes) {
         if (err) {
             res.status(401).send({ err: err });
         } else {
@@ -166,14 +181,26 @@ function getLikes(req, res) {
 function getPosts(req, res) {
     let username = req.query.user;
 
-    User.findOne({ username: username }, { posts: 1 }, function (err, userWithPosts) {
-        if (err) {
-            res.status(401).send({ err: err });
-        } else {
-            res.status(200).json({ data: userWithPosts });
+    User.aggregate(
+        [
+            { $match: { username: username } },
+            {
+                $project: {
+                    posts: {
+                        // $elemMatch: { $eq: ["$$post.isDeleted", false] }
+                        $filter: { input: "$posts", as: "post", cond: { $eq: ["$$post.isDeleted", false] } }
+                    }
+                }
+            }
+        ],
+        function (err, userWithPosts) {
+            if (err) {
+                res.status(401).send({ err: err });
+            } else {
+                res.status(200).json({ data: userWithPosts });
+            }
         }
-    });
-
+    );
 }
 
 function getCounts(req, res) {
@@ -184,8 +211,8 @@ function getCounts(req, res) {
             { $match: { username: username } },
             {
                 $project: {
-                    likesCount: { $size: '$likes' },
-                    postsCount: { $size: '$posts' }
+                    likesCount: { $size: { $filter: { input: "$likes", as: "like", cond: { $eq: ["$$like.isDeleted", false] } } } },
+                    postsCount: { $size: { $filter: { input: "$posts", as: "post", cond: { $eq: ["$$post.isDeleted", false] } } } },
                 }
             }
         ],
@@ -209,6 +236,7 @@ module.exports = {
     removeFromUserLikes,
     ifLiked,
     addToUserPosts,
+    removeFromUserPosts,
     getCounts,
     getLikes,
     getPosts

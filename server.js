@@ -14,6 +14,8 @@ const express = require('express'),
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "POST,GET,OPTIONS,PUT,DELETE");
+
   next();
 });
 
@@ -57,6 +59,7 @@ apiRoutes.get('/profile/counts', usersController.getCounts);
 apiRoutes.get('/profile/likes', usersController.getLikes);
 apiRoutes.get('/profile/posts', usersController.getPosts);
 apiRoutes.post('/profile/posts', usersController.addToUserPosts);
+apiRoutes.put('/profile/posts', usersController.removeFromUserPosts);
 apiRoutes.post('profile/update', passport.authenticate('jwt', { session: false }), usersController.updateUserProfile);
 
 apiRoutes.get('/users/like', usersController.ifLiked);
@@ -64,6 +67,7 @@ apiRoutes.post('/users/like', usersController.addToUserLikes);
 apiRoutes.post('/users/dislike', usersController.removeFromUserLikes);
 
 apiRoutes.get('/post/:id', postsController.getById);
+apiRoutes.delete('/post/:id', postsController.markAsDeleted);
 apiRoutes.get('/posts', postsController.get);
 apiRoutes.post('/posts', postsController.create);
 
