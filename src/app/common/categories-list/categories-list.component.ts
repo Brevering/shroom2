@@ -11,17 +11,15 @@ export class CategoriesListComponent implements OnInit {
 
   //data service here
   randomTenCategories: string[] = [
-    'Category1',
-    'Category2',
-    'Category3',
-    'Category4',
-    'Category5',
-    'Category6',
-    'Category7',
-    'Category8',
-    'Category9',
-    'Category10',
-    'Category11'];
+    'Film and Animation',
+    'Cars & Vehicles',
+    'Music',
+    'Pets & Animals',
+    'Sports',
+    'Travel & Events',
+    'Gaming',
+    'People & Blogs',
+    'Comedy'];
 
   constructor() { }
 

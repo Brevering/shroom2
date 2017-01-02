@@ -14,7 +14,16 @@ export class CreatePostComponent implements OnInit {
   typesOfGlyphs: string[] = ['pencil', 'facetime-video', 'picture', 'cd'];
 
   // take from CategoryService
-  categories: string[] = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5', 'Category 6'];
+  categories: string[] = [
+    'Film and Animation',
+    'Cars & Vehicles',
+    'Music',
+    'Pets & Animals',
+    'Sports',
+    'Travel & Events',
+    'Gaming',
+    'People & Blogs',
+    'Comedy'];
 
   isTypeSelected: boolean = false;
   post: any = {};
