@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 
-import { UserProfileComponent } from './index';
-import { UserPostsListComponent } from './index';
+import { UserProfileComponent, UserPostsListComponent, UserProfileUpdateComponent } from './index';
 import { CreatePostComponent } from '../posts/index';
 import { UserLikesListComponent } from './user-likes-list.component';
 
@@ -20,6 +19,7 @@ import { SafeUrlPipe } from '../home/safe-url.pipe';
   declarations: [
     UserProfileComponent,
     UserPostsListComponent,
+    UserProfileUpdateComponent,
     CreatePostComponent,
     UserLikesListComponent,
     UserLikesListComponent,

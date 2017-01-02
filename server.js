@@ -53,11 +53,19 @@ apiRoutes.post('/signup', usersController.postRegister);
 apiRoutes.post('/authenticate', usersController.postAuthenticate);
 apiRoutes.get('/users', usersController.getAll);
 
+apiRoutes.get('/profile/counts', usersController.getCounts);
 apiRoutes.get('/profile/likes', usersController.getLikes);
+apiRoutes.get('/profile/posts', usersController.getPosts);
 apiRoutes.post('/profile/posts', usersController.addToUserPosts);
+
+
 apiRoutes.get('/users/like', usersController.ifLiked);
 apiRoutes.post('/users/like', usersController.addToUserLikes);
 apiRoutes.post('/users/dislike', usersController.removeFromUserLikes);
+apiRoutes.post('/users/:username', usersController.updateUserProfile);
+
+
+
 apiRoutes.get('/post/:id', postsController.getById);
 apiRoutes.get('/posts', postsController.get);
 apiRoutes.post('/posts', postsController.create);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Post } from '../_models/post';
@@ -24,6 +24,7 @@ export class UserLikesListComponent implements OnInit {
     this.userService.getUserLikes(this.currentUsername)
       .subscribe(
       userWithLikes => {
+        //console.log(userWithLikes);
         this.likedPosts = userWithLikes.likes;
       },
       error => {

@@ -96,7 +96,7 @@ function addToUserLikes(req, res) {
 function removeFromUserLikes(req, res) {
     let username = req.body.username;
     let post = req.body.post;
-    //onsole.log(post._id);
+    // console.log(post._id);
 
     User.update(
         { username: username },
@@ -140,6 +140,22 @@ function addToUserPosts(req, res) {
         });
 }
 
+function updateUserProfile(req, res) {
+    User.find({ username: req.params.username }, function (err, u) {
+        console.log("INSIDE UPDATE USER PROFILE ! >> ERRORR << -> ", u);
+        
+        console.log("INSIDE UPDATE USER PROFILE ! >> USER << -> ", u);
+
+        if (!u.length)
+            throw Error('Could not load Document');
+        else {
+            u[0].firstName = req.body.firstName;
+            u[0].lastName = req.body.lastName;
+            u[0].save().then(res.send(u[0]));
+        }
+    });
+};
+
 function getLikes(req, res) {
     let username = req.query.user;
 
@@ -153,14 +169,53 @@ function getLikes(req, res) {
 
 }
 
+function getPosts(req, res) {
+    let username = req.query.user;
+
+    User.findOne({ username: username }, { posts: 1 }, function (err, userWithPosts) {
+        if (err) {
+            res.status(401).send({ err: err });
+        } else {
+            res.status(200).json({ data: userWithPosts });
+        }
+    });
+
+}
+
+function getCounts(req, res) {
+    let username = req.query.user;
+
+    User.aggregate(
+        [
+            { $match: { username: username } },
+            {
+                $project: {
+                    likesCount: { $size: '$likes' },
+                    postsCount: { $size: '$posts' }
+                }
+            }
+        ],
+        function (err, counts) {
+            if (err) {
+                res.status(401).send({ err: err });
+            } else {
+                res.status(200).json({ data: counts });
+            }
+        }
+    );
+}
+
 module.exports = {
     postRegister,
     postAuthenticate,
     getAll,
+    updateUserProfile,
 
     addToUserLikes,
     removeFromUserLikes,
     ifLiked,
     addToUserPosts,
-    getLikes
+    getCounts,
+    getLikes,
+    getPosts
 };

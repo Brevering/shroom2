@@ -13,7 +13,12 @@ export class UserService {
     }
 
     getById(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get('http://localhost:3000/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
+
+    getByUsername(username) {
+        return this.http.get('http://localhost:3000/api/users/' + String(username))
+            .map((res: Response) => res.json());
     }
 
     create(user: User) {
@@ -21,7 +26,8 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('http://localhost:3000/api/users/' + user.username, user)
+            .map((response: Response) => response.json());
     }
 
     delete(id: number) {
@@ -40,7 +46,6 @@ export class UserService {
             username: author,
             post: post
         };
-
         return this.http
             .post(`http://localhost:3000/api/users/like`, bodyToSend, options)
             .map((res: Response) => {
@@ -101,6 +106,28 @@ export class UserService {
 
         return this.http
             .get(`http://localhost:3000/api/profile/likes?user=${author}`)
+            .map((res: Response) => {
+                let body = res.json();
+                return body.data;
+            })
+            .catch(this.handleError);
+    }
+
+    getUserPosts(author: string) {
+
+        return this.http
+            .get(`http://localhost:3000/api/profile/posts?user=${author}`)
+            .map((res: Response) => {
+                let body = res.json();
+                return body.data;
+            })
+            .catch(this.handleError);
+    }
+
+    getLikesCount(author: string) {
+
+        return this.http
+            .get(`http://localhost:3000/api/profile/counts?user=${author}`)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data;
