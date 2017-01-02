@@ -96,7 +96,7 @@ function addToUserLikes(req, res) {
 function removeFromUserLikes(req, res) {
     let username = req.body.username;
     let post = req.body.post;
-    //onsole.log(post._id);
+    // console.log(post._id);
 
     User.update(
         { username: username },
@@ -169,6 +169,19 @@ function getLikes(req, res) {
 
 }
 
+function getPosts(req, res) {
+    let username = req.query.user;
+
+    User.findOne({ username: username }, { posts: 1 }, function (err, userWithPosts) {
+        if (err) {
+            res.status(401).send({ err: err });
+        } else {
+            res.status(200).json({ data: userWithPosts });
+        }
+    });
+
+}
+
 function getCounts(req, res) {
     let username = req.query.user;
 
@@ -203,5 +216,6 @@ module.exports = {
     ifLiked,
     addToUserPosts,
     getCounts,
-    getLikes
+    getLikes,
+    getPosts
 };

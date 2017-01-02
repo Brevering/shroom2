@@ -24,6 +24,7 @@ export class UserLikesListComponent implements OnInit {
     this.userService.getUserLikes(this.currentUsername)
       .subscribe(
       userWithLikes => {
+        //console.log(userWithLikes);
         this.likedPosts = userWithLikes.likes;
       },
       error => {

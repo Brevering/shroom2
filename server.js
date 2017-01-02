@@ -55,6 +55,7 @@ apiRoutes.get('/users', usersController.getAll);
 
 apiRoutes.get('/profile/counts', usersController.getCounts);
 apiRoutes.get('/profile/likes', usersController.getLikes);
+apiRoutes.get('/profile/posts', usersController.getPosts);
 apiRoutes.post('/profile/posts', usersController.addToUserPosts);
 
 
