@@ -140,6 +140,16 @@ function addToUserPosts(req, res) {
         });
 }
 
+function updateUserProfile(req, res) {
+    let userData = req.body;
+
+    users.update(userData.username, function (err, user) {
+        if (err) {
+            return res.status(409).json({ success: false, msg: { code: err.code, message: err.message } });
+        }
+    });
+};
+
 function getLikes(req, res) {
     let username = req.query.user;
 
@@ -180,6 +190,7 @@ module.exports = {
     postRegister,
     postAuthenticate,
     getAll,
+    updateUserProfile,
 
     addToUserLikes,
     removeFromUserLikes,

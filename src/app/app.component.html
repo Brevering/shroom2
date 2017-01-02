@@ -8,7 +8,6 @@
             </div>
         </div>
     </div>
-    <app-searchbar></app-searchbar>
     <app-navbar [currentUser]="currentUser" [isHidden]="isToggledOn" (onToggleCategoryBox)="isToggledOn=$event"></app-navbar>
     <app-categories-list [isHidden]="isToggledOn"></app-categories-list>
     <div id="content">

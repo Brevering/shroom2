@@ -3,7 +3,7 @@
     <form action="get">
       <div class="form-group-lg">
         <label class="sr-only" for="main-search">Search</label>
-        <input type="search" class="form-control" id="main-search" placeholder="Search">
+        <input type="search" class="form-control" id="main-search" placeholder="Search..." (input)="onInput($event)">
       </div>
     </form>
   </div>

@@ -56,9 +56,12 @@ apiRoutes.get('/users', usersController.getAll);
 apiRoutes.get('/profile/counts', usersController.getCounts);
 apiRoutes.get('/profile/likes', usersController.getLikes);
 apiRoutes.post('/profile/posts', usersController.addToUserPosts);
+apiRoutes.post('profile/update', passport.authenticate('jwt', { session: false }), usersController.updateUserProfile);
+
 apiRoutes.get('/users/like', usersController.ifLiked);
 apiRoutes.post('/users/like', usersController.addToUserLikes);
 apiRoutes.post('/users/dislike', usersController.removeFromUserLikes);
+
 apiRoutes.get('/post/:id', postsController.getById);
 apiRoutes.get('/posts', postsController.get);
 apiRoutes.post('/posts', postsController.create);
