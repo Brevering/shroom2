@@ -6,8 +6,8 @@
     <div class="list-group">
       <a class="list-group-item" [routerLink]="['/profile']">Post something</a>
       <a class="list-group-item" [routerLink]="['/profile/update']">Update your information</a>
-      <a class="list-group-item" [routerLink]="['my-posts']">Show my posts<span class="badge">14</span></a>
-      <a class="list-group-item" [routerLink]="['my-likes']">Show my likes<span class="badge">256</span></a>
+      <a class="list-group-item" [routerLink]="['my-posts']">Show my posts<span class="badge">{{postsCount}}</span></a>
+      <a class="list-group-item" [routerLink]="['my-likes']">Show my likes<span class="badge">{{likesCount}}</span></a>
       <!--<a class="list-group-item" (click)="navigate( 'edit' )" disabled="disabled">Edit my profile</a>-->
     </div>
   </div>

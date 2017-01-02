@@ -124,7 +124,18 @@ export class UserService {
     getUserLikes(author: string) {
 
         return this.http
-            .get(`http://localhost:3000/api/profile/likes?user=${author}`)
+            .get(`http://localhost:3000/api/users/like?user=${author}`)
+            .map((res: Response) => {
+                let body = res.json();
+                return body.data;
+            })
+            .catch(this.handleError);
+    }
+
+    getLikesCount(author: string) {
+
+        return this.http
+            .get(`http://localhost:3000/api/profile/counts?user=${author}`)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data;

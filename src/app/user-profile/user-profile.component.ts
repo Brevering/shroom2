@@ -1,6 +1,9 @@
 import { Component, OnInit, trigger, state, style, animate, transition } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Post } from '../_models/post';
+import { PostsService, UserService } from '../_services/index';
+
 @Component({
     selector: 'app-user-profile',
     templateUrl: './user-profile.component.html',
@@ -20,20 +23,31 @@ import { Router, ActivatedRoute } from '@angular/router';
     ]
 })
 export class UserProfileComponent implements OnInit {
+    private currentUsername: string;
+    postsCount: number;
+    likesCount: number;
 
-    constructor(private router: Router, private activeRoute: ActivatedRoute) { }
-
-    ngOnInit() {
-        // this.navigate('/my-posts');
+    constructor(
+        private router: Router,
+        private activeRoute: ActivatedRoute,
+        private postsService: PostsService,
+        private userService: UserService) {
+        this.currentUsername = userService.currentUser();
     }
 
-    // navigate(route: string) {
-    //     // if (route.length === 0) {
-    //     //     console.log('Hi');
-    //     //     console.log(route);
-    //     //     this.router.navigateByUrl('/profile');
-    //     // }
-    //     this.router.navigate([route, { relativeTo: this.activeRoute }]);
-    // }
+    ngOnInit() {
+        this.userService.getLikesCount(this.currentUsername)
+            .subscribe(
+            counts => {
+                console.log(counts);
+                this.postsCount = counts[0].postsCount;
+                this.likesCount = counts[0].likesCount;
+            },
+            error => {
+                console.log('error');
+            });
+
+        //this.router.navigate(['my-likes', { relativeTo: this.activeRoute }]);
+    }
 
 }

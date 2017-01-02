@@ -163,6 +163,29 @@ function getLikes(req, res) {
 
 }
 
+function getCounts(req, res) {
+    let username = req.query.user;
+
+    User.aggregate(
+        [
+            { $match: { username: username } },
+            {
+                $project: {
+                    likesCount: { $size: '$likes' },
+                    postsCount: { $size: '$posts' }
+                }
+            }
+        ],
+        function (err, counts) {
+            if (err) {
+                res.status(401).send({ err: err });
+            } else {
+                res.status(200).json({ data: counts });
+            }
+        }
+    );
+}
+
 module.exports = {
     postRegister,
     postAuthenticate,
@@ -173,5 +196,6 @@ module.exports = {
     removeFromUserLikes,
     ifLiked,
     addToUserPosts,
+    getCounts,
     getLikes
 };
