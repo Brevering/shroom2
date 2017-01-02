@@ -10,7 +10,7 @@ import { PostsService, UserService } from '../_services/index';
 })
 export class UserPostsListComponent implements OnInit {
   private currentUsername: string;
-  userPosts: Post[];
+  userPosts;
 
   constructor(
     private router: Router,
@@ -23,8 +23,23 @@ export class UserPostsListComponent implements OnInit {
     this.userService.getUserPosts(this.currentUsername)
       .subscribe(
       userWithPosts => {
-        this.userPosts = userWithPosts.posts;
+        this.userPosts = userWithPosts[0].posts;
       },
+      error => {
+        console.log('error');
+      });
+  }
+
+  onDelete(post) {
+    this.postsService.deletePost(post._id)
+      .subscribe(
+      deletedPost =>
+        this.userService.removePostFromUserPosts(this.currentUsername, post)
+          .subscribe(
+          data => {
+            let index = this.userPosts.findIndex(p => String(p._id) === String(post._id));
+            this.userPosts.splice(index, 1);
+          }),
       error => {
         console.log('error');
       });

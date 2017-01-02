@@ -46,6 +46,19 @@ export class PostsService {
       .catch(this.handleError);
   }
 
+  deletePost(id: string): Observable<Post> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http
+      .delete(`http://localhost:3000/api/post/${id}`)
+      .map((res: Response) => {
+        let body = res.json();
+        return body.data as Post;
+      })
+      .catch(this.handleError);
+  }
+
   private handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {

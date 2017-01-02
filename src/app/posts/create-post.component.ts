@@ -40,7 +40,6 @@ export class CreatePostComponent implements OnInit {
 
   onToggle() {
     this.isTypeSelected = !this.isTypeSelected;
-    console.log(this.post.type);
   }
 
   create() {

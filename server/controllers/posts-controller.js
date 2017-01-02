@@ -1,7 +1,7 @@
 let PostModel = require("mongoose").model("Post");
 
 function get(req, res) {
-    PostModel.find({}, function (err, posts) {
+    PostModel.find({ isDeleted: { $eq: false } }, function (err, posts) {
         if (err) {
             throw err;
         }
@@ -42,8 +42,22 @@ function create(req, res) {
     });
 }
 
+function markAsDeleted(req, res) {
+    let id = req.params.id;
+
+    PostModel.findByIdAndUpdate(id, { $set: { isDeleted: true } }, function (err, updatedPost) {
+        if (err) {
+            return res.status(409).json({ success: false, msg: { code: err.code, message: err.message } });
+        } else {
+            // check for delete statuses(204 does not return result)
+            return res.status(200).json({ success: true, data: updatedPost });
+        }
+    })
+}
+
 module.exports = {
     get,
     getById,
-    create
+    create,
+    markAsDeleted
 }

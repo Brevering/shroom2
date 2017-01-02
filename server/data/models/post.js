@@ -160,7 +160,7 @@ postSchema.statics.seedData = function () {
 
 mongoose.model("Post", postSchema);
 let PostModel = mongoose.model("Post");
-PostModel.seedData();
+//PostModel.seedData();
 
 module.exports = PostModel;
 

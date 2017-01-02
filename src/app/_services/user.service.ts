@@ -106,6 +106,24 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    removePostFromUserPosts(author: string, post: Post) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let bodyToSend = {
+            username: author,
+            post: post
+        };
+
+        return this.http
+            .put(`http://localhost:3000/api/profile/posts`, bodyToSend, options)
+            .map((res: Response) => {
+                let body = res.json();
+                return body.data as User;
+            })
+            .catch(this.handleError);
+    }
+
     getUserLikes(author: string) {
 
         return this.http
@@ -128,7 +146,7 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    getLikesCount(author: string) {
+    getCounts(author: string) {
 
         return this.http
             .get(`http://localhost:3000/api/profile/counts?user=${author}`)
