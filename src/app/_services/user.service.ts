@@ -79,6 +79,24 @@ export class UserService {
             .catch(this.handleError);
     }
 
+     addPostToUserPosts(author: string, post: Post) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let bodyToSend = {
+            username: author,
+            post: post
+        };
+
+        return this.http
+            .post(`http://localhost:3000/api/profile/posts`, bodyToSend, options)
+            .map((res: Response) => {
+                let body = res.json();
+                return body.data as User;
+            })
+            .catch(this.handleError);
+    }
+
     // private helper methods
 
     private jwt() {

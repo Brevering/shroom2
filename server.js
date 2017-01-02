@@ -53,6 +53,7 @@ apiRoutes.post('/signup', usersController.postRegister);
 apiRoutes.post('/authenticate', usersController.postAuthenticate);
 apiRoutes.get('/users', usersController.getAll);
 
+apiRoutes.post('/profile/posts', usersController.addToUserPosts);
 apiRoutes.get('/users/like', usersController.ifLiked);
 apiRoutes.post('/users/like', usersController.addToUserLikes);
 apiRoutes.post('/users/dislike', usersController.removeFromUserLikes);

@@ -93,7 +93,6 @@ function addToUserLikes(req, res) {
         });
 }
 
-
 function removeFromUserLikes(req, res) {
     let username = req.body.username;
     let post = req.body.post;
@@ -125,6 +124,22 @@ function ifLiked(req, res) {
 
 }
 
+function addToUserPosts(req, res) {
+    let username = req.body.username;
+    let post = req.body.post;
+
+    User.update(
+        { username: username },
+        { $push: { posts: post } },
+        function (err, updatedUser) {
+            if (err) {
+                res.status(401).send({ err: err });
+            } else {
+                res.status(200).json({ data: updatedUser });
+            }
+        });
+}
+
 module.exports = {
     postRegister,
     postAuthenticate,
@@ -132,5 +147,6 @@ module.exports = {
 
     addToUserLikes,
     removeFromUserLikes,
-    ifLiked
+    ifLiked,
+    addToUserPosts
 };

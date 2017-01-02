@@ -40,8 +40,15 @@ export class CreatePostComponent implements OnInit {
       .subscribe(
       createdPost => {
         this.alertService.success('Article Created!');
-        // userService.addPostToUser(this.post.author, this.post)
-        this.router.navigate(['/home']);
+        this.userService.addPostToUserPosts(this.post.author, createdPost)
+          .subscribe(
+          updatedUser => {
+            this.router.navigate(['/home']);
+          },
+          error => {
+            console.log('Error');
+          });
+
       },
       error => {
         this.alertService.error(error);
