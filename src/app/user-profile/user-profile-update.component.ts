@@ -27,8 +27,8 @@ import { UserService } from '../_services/index';
 
 export class UserProfileUpdateComponent implements OnInit {
     @Input() user: User = new User;
+
     constructor(
-        private http: Http,
         private router: Router,
         private userService: UserService) { }
 
@@ -43,6 +43,8 @@ export class UserProfileUpdateComponent implements OnInit {
             .subscribe(dbItem => {
                 this.user.firstName = dbItem.firstName;
                 this.user.lastName = dbItem.lastName;
+
+                this.router.navigate(['/profile']);
             });
     }
 }

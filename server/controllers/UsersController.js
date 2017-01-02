@@ -141,11 +141,17 @@ function addToUserPosts(req, res) {
 }
 
 function updateUserProfile(req, res) {
-    let userData = req.body;
+    User.find({ username: req.params.username }, function (err, u) {
+        console.log("INSIDE UPDATE USER PROFILE ! >> ERRORR << -> ", u);
+        
+        console.log("INSIDE UPDATE USER PROFILE ! >> USER << -> ", u);
 
-    users.update(userData.username, function (err, user) {
-        if (err) {
-            return res.status(409).json({ success: false, msg: { code: err.code, message: err.message } });
+        if (!u.length)
+            throw Error('Could not load Document');
+        else {
+            u[0].firstName = req.body.firstName;
+            u[0].lastName = req.body.lastName;
+            u[0].save().then(res.send(u[0]));
         }
     });
 };
