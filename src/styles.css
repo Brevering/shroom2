@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 /* You can add global styles to this file, and also import other style files */
+
 
 /*body {
     background-image: url("../img/rbthqzjd_vu-thaddaeus-lim.jpg");
@@ -40,7 +42,7 @@ ul#category-list li {
     margin: 5px 5px;
 }
 
-.thumbnail > img:hover {
+.thumbnail:hover {
     opacity: 0.5;
     filter: alpha(opacity=50);
     /* For IE8 and earlier */
@@ -55,3 +57,20 @@ ul#category-list li {
     height: 200px;
     overflow: hidden;
 }
+
+.gi-2x {
+    font-size: 2em;
+}
+
+.gi-3x {
+    font-size: 3em;
+}
+
+.gi-4x {
+    font-size: 4em;
+}
+
+.gi-5x {
+    font-size: 5em;
+}
+

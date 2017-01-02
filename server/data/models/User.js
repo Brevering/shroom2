@@ -26,7 +26,9 @@ module.exports.init = function () {
             default: Date.now
         },
         salt: String,
-        hashPass: String
+        hashPass: String,
+        posts: [{}],
+        likes: [{}]
     });
 
     userSchema.method({

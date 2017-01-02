@@ -5,4 +5,6 @@
     lastName: string;
     isDeleted: boolean;
     registeredAt: Date;
+    posts: {}[];
+    likes: {}[];
 }

@@ -1,0 +1,7 @@
+.glyphicon-heart-empty, .glyphicon-heart {
+    color: darkred;
+}
+
+.glyphicon-heart-empty:hover, .glyphicon-heart:hover {
+    font-size: 3.5em;
+}

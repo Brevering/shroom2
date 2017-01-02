@@ -38,7 +38,7 @@ export class PostsService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http
-      .post(`http://localhost:3000/api/posts`, post, options)
+      .post(`http://localhost:3000/api/posts`, JSON.stringify(post), options)
       .map((res: Response) => {
         let body = res.json();
         return body.data as Post;

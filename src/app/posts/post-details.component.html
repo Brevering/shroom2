@@ -27,9 +27,9 @@
       </div>
       <div class="center-block text-center">
         <ul class="list-inline">
-          <li><a role="button"><span class="glyphicon glyphicon-comment" aria-hidden="true" aria-label="Reply"></span></a></li>
-          <li><a role="button"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true" aria-label="Like"></span></a></li>
-          <li><a role="button"><span class="glyphicon glyphicon-heart" aria-hidden="true" aria-label="Liked"></span></a></li>
+          <!--<li><a role="button"><span class="glyphicon glyphicon-comment" aria-hidden="true" aria-label="Reply"></span></a></li>-->
+          <li><a role="button" *ngIf="!isLiked" (click)=like()><span class="glyphicon glyphicon-heart-empty gi-3x" aria-hidden="true" aria-label="Like"></span></a></li>
+          <li><a role="button" *ngIf="isLiked" (click)=dislike()><span class="glyphicon glyphicon-heart gi-3x" aria-hidden="true" aria-label="Liked"></span></a></li>
         </ul>
       </div>
     </div>

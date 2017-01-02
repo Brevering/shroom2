@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Post } from '../_models/post';
-import { AlertService, PostsService } from '../_services/index';
+import { AlertService, PostsService, UserService } from '../_services/index';
 
 @Component({
   selector: 'app-create-post',
@@ -22,7 +22,8 @@ export class CreatePostComponent implements OnInit {
   constructor(
     private router: Router,
     private postsService: PostsService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private userService: UserService) { }
 
   ngOnInit() {
     //get categories
@@ -34,12 +35,12 @@ export class CreatePostComponent implements OnInit {
   }
 
   create() {
-    this.post.author = JSON.parse(localStorage.getItem('currentUser')).username;
+    this.post.author = this.userService.currentUser();
     this.postsService.createPost(this.post)
       .subscribe(
       createdPost => {
         this.alertService.success('Article Created!');
-        // userService.addPostToUser()
+        // userService.addPostToUser(this.post.author, this.post)
         this.router.navigate(['/home']);
       },
       error => {

@@ -62,8 +62,75 @@ function getAll(req, res) {
     });
 }
 
+
+function addToUserLikes(req, res) {
+    let username = req.body.username;
+    let post = req.body.post;
+
+    // User.findOne({ username: username }, function (err, user) {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     user.likes.push(post)
+    //     user.save(function (err, updatedUser) {
+    //         if (err) {
+    //             res.status(401).send({ err: 'Post not added to user likes' });
+    //         } else {
+    //             res.status(200).json({ data: updatedUser });
+    //         }
+    //     });
+    // });
+
+    User.update(
+        { username: username },
+        { $push: { likes: post } },
+        function (err, updatedUser) {
+            if (err) {
+                res.status(401).send({ err: err });
+            } else {
+                res.status(200).json({ data: updatedUser });
+            }
+        });
+}
+
+
+function removeFromUserLikes(req, res) {
+    let username = req.body.username;
+    let post = req.body.post;
+    //onsole.log(post._id);
+
+    User.update(
+        { username: username },
+        { $pull: { likes: { _id: post._id } } },
+        function (err, updatedUser) {
+            if (err) {
+                res.status(401).send({ err: err });
+            } else {
+                res.status(200).json({ data: updatedUser });
+            }
+        });
+}
+
+function ifLiked(req, res) {
+    let username = req.query.user;
+    let postId = req.query.postid;
+
+    User.count({ likes: { $elemMatch: { _id: postId } } }, function (err, count) {
+        if (err) {
+            res.status(401).send({ err: err });
+        } else {
+            res.status(200).json({ data: count });
+        }
+    });
+
+}
+
 module.exports = {
     postRegister,
     postAuthenticate,
-    getAll
+    getAll,
+
+    addToUserLikes,
+    removeFromUserLikes,
+    ifLiked
 };
