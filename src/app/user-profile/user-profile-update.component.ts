@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 
+import { AlertService } from '../_services/index';
+
 @Component({
     selector: 'app-user-profile-update',
     templateUrl: './user-profile-update.html',
@@ -26,11 +28,13 @@ import { UserService } from '../_services/index';
 })
 
 export class UserProfileUpdateComponent implements OnInit {
+    loading = false;
     @Input() user: User = new User;
 
     constructor(
         private router: Router,
-        private userService: UserService) { }
+        private userService: UserService,
+        private alert: AlertService) { }
 
     ngOnInit() {
         let storageUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -43,7 +47,6 @@ export class UserProfileUpdateComponent implements OnInit {
             .subscribe(dbItem => {
                 this.user.firstName = dbItem.firstName;
                 this.user.lastName = dbItem.lastName;
-
                 this.router.navigate(['/profile']);
             });
     }

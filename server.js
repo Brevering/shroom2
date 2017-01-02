@@ -62,6 +62,7 @@ apiRoutes.post('/profile/posts', usersController.addToUserPosts);
 apiRoutes.get('/users/like', usersController.ifLiked);
 apiRoutes.post('/users/like', usersController.addToUserLikes);
 apiRoutes.post('/users/dislike', usersController.removeFromUserLikes);
+apiRoutes.get('/users/:username', usersController.getUserInformation);
 apiRoutes.post('/users/:username', usersController.updateUserProfile);
 
 

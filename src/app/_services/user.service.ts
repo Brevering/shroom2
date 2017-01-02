@@ -16,9 +16,13 @@ export class UserService {
         return this.http.get('http://localhost:3000/api/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
-    getByUsername(username) {
-        return this.http.get('http://localhost:3000/api/users/' + String(username))
-            .map((res: Response) => res.json());
+    getByUsername(username: string) {
+        return this.http.get('http://localhost:3000/api/users/' + username)
+            .map((res: Response) => {
+                let body = res.json();
+                return body;
+            })
+            .catch(this.handleError);
     }
 
     create(user: User) {

@@ -140,18 +140,25 @@ function addToUserPosts(req, res) {
         });
 }
 
-function updateUserProfile(req, res) {
-    User.find({ username: req.params.username }, function (err, u) {
-        console.log("INSIDE UPDATE USER PROFILE ! >> ERRORR << -> ", u);
-        
-        console.log("INSIDE UPDATE USER PROFILE ! >> USER << -> ", u);
+function getUserInformation(req, res) {
+    User.find({ username: req.params.username }, function (err, user) {
+        if (!user.length) {
+            throw Error('There is not such username');
+        } else {
+            console.log(user);
+            res.status(200).json(user);
+        }
+    });
+}
 
-        if (!u.length)
-            throw Error('Could not load Document');
+function updateUserProfile(req, res) {
+    User.find({ username: req.params.username }, function (err, user) {
+        if (!user.length)
+            throw Error('There is not such username');
         else {
-            u[0].firstName = req.body.firstName;
-            u[0].lastName = req.body.lastName;
-            u[0].save().then(res.send(u[0]));
+            user[0].firstName = req.body.firstName;
+            user[0].lastName = req.body.lastName;
+            user[0].save().then(res.send(user[0]));
         }
     });
 };
@@ -209,6 +216,7 @@ module.exports = {
     postRegister,
     postAuthenticate,
     getAll,
+    getUserInformation,
     updateUserProfile,
 
     addToUserLikes,
