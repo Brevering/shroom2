@@ -1,9 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, state, style, animate, transition } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-user-profile',
-    templateUrl: './user-profile.component.html'
+    templateUrl: './user-profile.component.html',
+    host: {
+        '[@routeAnimation]': 'true',
+        '[style.display]': "'block'",
+    },
+    animations: [
+        trigger('routeAnimation', [
+            state('*', style({ transform: 'translateX(0)', opacity: 1 })),
+            transition('void => *', [
+                style({ transform: 'translateY(-100%)', opacity: 0 }),
+                animate(300)
+            ]),
+            transition('* => void', animate(300, style({ transform: 'translateY(100%)', opacity: 0 })))
+        ])
+    ]
 })
 export class UserProfileComponent implements OnInit {
 
