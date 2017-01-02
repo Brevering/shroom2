@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { PostsService } from '../_services/index';
 import { Post } from '../_models/post';
@@ -10,23 +10,36 @@ import { Post } from '../_models/post';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  errorMessage: string;
-  posts: Post[];
+
+  private posts: Post[] = [];
+  private pageSize: number;
+  private currentPage: number;
+  private numberOfPages: number;
+
   @Input() filtertext: string;
 
   constructor(
     private router: Router,
-    private postsService: PostsService) { }
+    private postsService: PostsService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.postsService
-    .getPosts()
-    .subscribe(posts => this.posts = posts, error =>  this.errorMessage = <any>error);
-  }
+    this.pageSize = 7;
+    this.postsService.getPosts().subscribe(posts => {
+      this.posts = posts;
+      this.numberOfPages = Math.ceil(this.posts.length / this.pageSize);
+    });
+    this.route.params.map(params => params['page']).subscribe((page) => {this.currentPage = page; });
+    this.currentPage = this.route.snapshot.params['page'];
+      }
 
   onSelect(post) {
     this.router.navigate(['/post', post._id]);
   }
+
+   onPageChange(page: number) {
+        this.currentPage = this.route.snapshot.params['page'];
+    }
 
 
 }
