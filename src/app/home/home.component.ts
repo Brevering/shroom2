@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.pageSize = 7;
+    this.pageSize = 8;
     this.postsService.getPosts().subscribe(posts => {
       this.posts = posts;
       this.numberOfPages = Math.ceil(this.posts.length / this.pageSize);

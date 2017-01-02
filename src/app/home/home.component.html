@@ -1,5 +1,5 @@
 <app-searchbar (onTextInput)="filterText=$event"></app-searchbar>
-<div class="row">
+<div style="display:flex; flex-wrap: wrap;" class="row">
   <div class="col-md-3" *ngFor="let post of posts | postsFilter:filterText | postsPaging:currentPage:pageSize">
     <div class="thumbnail" (click)="onSelect(post)">
       <!--<p class="text" *ngIf="post.title">{{post.title}}</p>    -->
