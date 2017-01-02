@@ -140,6 +140,19 @@ function addToUserPosts(req, res) {
         });
 }
 
+function getLikes(req, res) {
+    let username = req.query.user;
+
+    User.findOne({ username: username }, { likes: 1 }, function (err, userWithLikes) {
+        if (err) {
+            res.status(401).send({ err: err });
+        } else {
+            res.status(200).json({ data: userWithLikes });
+        }
+    });
+
+}
+
 module.exports = {
     postRegister,
     postAuthenticate,
@@ -148,5 +161,6 @@ module.exports = {
     addToUserLikes,
     removeFromUserLikes,
     ifLiked,
-    addToUserPosts
+    addToUserPosts,
+    getLikes
 };

@@ -1,3 +1,17 @@
-<p>
-  user-likes-list works!
-</p>
+<div class="row" *ngFor="let post of likedPosts">
+  <div class="col-md-12">
+    <div class="thumbnail" (click)="onSelect(post)">
+      <div class="center-block pull-right">
+        <ul class="list-inline">
+          <li><a role="button" (click)=dislike()><span class="glyphicon glyphicon-heart gi-2x" aria-hidden="true" aria-label="Liked"></span></a></li>
+        </ul>
+      </div>
+      <!--<p class="text" *ngIf="post.title">{{post.title}}</p>-->
+      <p class="text" *ngIf="post.body">{{post.body}}</p>
+      <img *ngIf="post.imgLink" [src]="post.imgLink">
+      <iframe *ngIf="post.videoLink" [src]="post.videoLink | safeUrl" frameborder="0" allowfullscreen></iframe>
+      <iframe *ngIf="post.audioLink" [src]="post.audioLink | safeUrl" frameborder="0" scrolling="no" webkitallowfullscreen mozallowfullscreen
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
