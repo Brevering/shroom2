@@ -13,6 +13,6 @@
       </div>
     </div>
   </div>
-  <app-pager [numberOfPages]="numberOfPages" (pageChanged)="onPageChange($event)"></app-pager>
+  <app-pager class="center-block" [numberOfPages]="numberOfPages" [postsNbr]="(posts  | postsFilter:filterText).length" (pageChanged)="onPageChange($event)"></app-pager>
   <div class="clearfix visible-md-inline"></div>
 </div>

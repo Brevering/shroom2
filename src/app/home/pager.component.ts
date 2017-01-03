@@ -8,6 +8,8 @@ import { HomeComponent } from './index';
 export class PagerComponent implements DoCheck {
 
     @Input() numberOfPages: number;
+    @Input() postsNbr: number;
+    private range: number[];
 
     constructor(private homeComponent: HomeComponent){}
 
@@ -19,6 +21,6 @@ export class PagerComponent implements DoCheck {
         return items;
     }
     ngDoCheck(){
-        this.createRange(this.numberOfPages);
+        this.range = this.createRange(Math.ceil(this.postsNbr / 8) );
     }
 }
