@@ -27,8 +27,6 @@ function postAuthenticate(req, res) {
     User.findOne({ username: req.body.username },
         function (err, user) {
 
-            console.log("USER ->" + user);
-
             if (err) {
                 throw err;
             }
