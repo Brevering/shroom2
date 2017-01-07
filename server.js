@@ -8,7 +8,8 @@ const express = require('express'),
   User = require('./server/data/models/User'), // get the mongoose model
   PostModel = require('./server/data/models/post'),
   port = process.env.PORT || 3000,
-  jwt = require('jwt-simple');
+  jwt = require('jwt-simple'),
+  path = require('path');
 
 // Allow CORS
 app.use(function (req, res, next) {
@@ -82,4 +83,4 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Start the server
 app.listen(port);
-console.log('Server is active at:' + __dirname + port);
+console.log('Server is active at:' + __dirname +":" + port);
