@@ -81,6 +81,12 @@ apiRoutes.post('/posts', postsController.create);
 app.use('/api', apiRoutes);
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// For all GET requests, send back index.html
+// so that PathLocationStrategy can be used
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
 // Start the server
 app.listen(port);
 console.log('Server is active at:' + __dirname +":" + port);
