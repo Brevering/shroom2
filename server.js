@@ -30,9 +30,9 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 
 // demo Route (GET http://localhost:3000)
-app.get('/', function (req, res) {
-  res.send('Hello! The API is at http://localhost:' + port + '/api');
-});
+// app.get('/', function (req, res) {
+//   res.send('Hello! The API is at http://localhost:' + port + '/api');
+// });
 
 // connect to database
 mongoose.connect(config.database);
@@ -78,7 +78,8 @@ apiRoutes.post('/posts', postsController.create);
 
 // connect the api routes under /api/*
 app.use('/api', apiRoutes);
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Start the server
 app.listen(port);
-console.log('Server is active at: http://localhost:' + port);
+console.log('Server is active at:' + __dirname + port);

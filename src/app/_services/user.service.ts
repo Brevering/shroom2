@@ -9,15 +9,15 @@ export class UserService {
     constructor(private http: Http) { }
 
     getAll() {
-        return this.http.get('http://localhost:3000/api/users').map((response: Response) => response.json());
+        return this.http.get('/api/users').map((response: Response) => response.json());
     }
 
     getById(id: number) {
-        return this.http.get('http://localhost:3000/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     getByUsername(username: string) {
-        return this.http.get('http://localhost:3000/api/users/' + username)
+        return this.http.get('/api/users/' + username)
             .map((res: Response) => {
                 let body = res.json();
                 return body;
@@ -26,11 +26,11 @@ export class UserService {
     }
 
     create(user: User) {
-        return this.http.post('http://localhost:3000/api/signup/', user, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('/api/signup/', user, this.jwt()).map((response: Response) => response.json());
     }
 
     update(user: User) {
-        return this.http.post('http://localhost:3000/api/users/' + user.username, user)
+        return this.http.post('/api/users/' + user.username, user)
             .map((response: Response) => response.json());
     }
 
@@ -51,7 +51,7 @@ export class UserService {
             post: post
         };
         return this.http
-            .post(`http://localhost:3000/api/users/like`, bodyToSend, options)
+            .post(`/api/users/like`, bodyToSend, options)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data as User;
@@ -69,7 +69,7 @@ export class UserService {
         };
 
         return this.http
-            .post(`http://localhost:3000/api/users/dislike`, bodyToSend, options)
+            .post(`/api/users/dislike`, bodyToSend, options)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data as User;
@@ -80,7 +80,7 @@ export class UserService {
     checkIfLiked(author: string, postId: any) {
 
         return this.http
-            .get(`http://localhost:3000/api/users/like?user=${author}&postid=${postId}`)
+            .get(`/api/users/like?user=${author}&postid=${postId}`)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data;
@@ -98,7 +98,7 @@ export class UserService {
         };
 
         return this.http
-            .post(`http://localhost:3000/api/profile/posts`, bodyToSend, options)
+            .post(`/api/profile/posts`, bodyToSend, options)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data as User;
@@ -116,7 +116,7 @@ export class UserService {
         };
 
         return this.http
-            .put(`http://localhost:3000/api/profile/posts`, bodyToSend, options)
+            .put(`/api/profile/posts`, bodyToSend, options)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data as User;
@@ -127,7 +127,7 @@ export class UserService {
     getUserLikes(author: string) {
 
         return this.http
-            .get(`http://localhost:3000/api/profile/likes?user=${author}`)
+            .get(`/api/profile/likes?user=${author}`)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data;
@@ -138,7 +138,7 @@ export class UserService {
     getUserPosts(author: string) {
 
         return this.http
-            .get(`http://localhost:3000/api/profile/posts?user=${author}`)
+            .get(`/api/profile/posts?user=${author}`)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data;
@@ -149,7 +149,7 @@ export class UserService {
     getCounts(author: string) {
 
         return this.http
-            .get(`http://localhost:3000/api/profile/counts?user=${author}`)
+            .get(`/api/profile/counts?user=${author}`)
             .map((res: Response) => {
                 let body = res.json();
                 return body.data;

@@ -15,7 +15,7 @@ export class PostsService {
   getPosts(): Observable<Post[]> {
     // The http.get does not send the request just yet. This observable is cold, which means that the request won't go out until something subscribes to the observable
     return this.http
-      .get(`http://localhost:3000/api/posts`)
+      .get(`/api/posts`)
       .map((res: Response) => {
         let body = res.json();
         return body.data as Post[];
@@ -25,7 +25,7 @@ export class PostsService {
 
   getPostById(id: string): Observable<Post> {
     return this.http
-      .get(`http://localhost:3000/api/post/${id}`)
+      .get(`/api/post/${id}`)
       .map((res: Response) => {
         let body = res.json();
         return body.data as Post;
@@ -38,7 +38,7 @@ export class PostsService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http
-      .post(`http://localhost:3000/api/posts`, JSON.stringify(post), options)
+      .post(`/api/posts`, JSON.stringify(post), options)
       .map((res: Response) => {
         let body = res.json();
         return body.data as Post;
@@ -51,7 +51,7 @@ export class PostsService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http
-      .delete(`http://localhost:3000/api/post/${id}`)
+      .delete(`/api/post/${id}`)
       .map((res: Response) => {
         let body = res.json();
         return body.data as Post;
