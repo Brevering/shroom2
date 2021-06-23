@@ -17,7 +17,7 @@ The application should have a:
 ### Public Part
 
 The **public part** of your projects should be **visible without authentication**.
-This public part could be the application start page, application statistics, the user login and user registration forms, as well as the public data of the users, e.g. the blog posts in a blog system, the public offers in a bid system, the products in an e-commerce system, etc.
+This public part could be the application start page, application statistics, the user login and user registration forms, as well as the public data of the users, e.g. the blog posts in a blog system, the public offers in a bid system, the products in an e-commerce system, etcetera.
 
 ### Private Part (Registered users area)
 
